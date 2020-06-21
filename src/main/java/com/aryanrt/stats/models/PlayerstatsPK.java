@@ -4,12 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class TeamstatsPK {
+public class PlayerstatsPK {
 
 	private static final long serialVersionUID = 1L;
 
 	@Column(insertable=false, updatable=false)
-	private String teamID;
+	private String playerID;
 	
 	@Column(insertable=false, updatable=false)
 	private String gameID;
@@ -21,13 +21,13 @@ public class TeamstatsPK {
 		this.gameID = gameID;
 	}
 	
-	public TeamstatsPK() {
+	public PlayerstatsPK() {
 	}
-	public String getTeamID() {
-		return this.teamID;
+	public String getplayerID() {
+		return this.playerID;
 	}
-	public void setTeamID(String teamID) {
-		this.teamID = teamID;
+	public void setplayerID(String playerID) {
+		this.playerID = playerID;
 	}
 
 	public boolean equals(Object other) {
@@ -37,16 +37,16 @@ public class TeamstatsPK {
 		if (!(other instanceof PlayerPK)) {
 			return false;
 		}
-		TeamstatsPK castOther = (TeamstatsPK)other;
+		PlayerstatsPK castOther = (PlayerstatsPK)other;
 		return 
-			this.teamID.equals(castOther.teamID)
+			this.playerID.equals(castOther.playerID)
 			&& this.gameID.equals(castOther.gameID);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.teamID.hashCode();
+		hash = hash * prime + this.playerID.hashCode();
 		hash = hash * prime + this.gameID.hashCode();
 		return hash;
 	}

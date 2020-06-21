@@ -1,20 +1,22 @@
 package com.aryanrt.stats.models;
+
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
- * The persistent class for the player database table.
+ * The persistent class for the playerstats database table.
  * 
  */
 @Entity
-@Table(name="player")
-@NamedQuery(name="Player.findAll", query="SELECT p FROM Player p")
-public class Player implements Serializable {
+@Table(name="playerstats")
+@NamedQuery(name="Team.findAll", query="SELECT t FROM playerstats t")
+public class Playerstats implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private PlayerPK id;
+	private PlayerstatsPK id;
 
 	@Column(name="3pa")
 	private double _pa;
@@ -37,29 +39,17 @@ public class Player implements Serializable {
 	@Column(name="fgm")
 	private double fgm;
 
-	@Column(name="FP")
-	private double fp;
-
 	@Column(name="fta")
 	private double fta;
 
 	@Column(name="ftm")
 	private double ftm;
 
-	@Column(name="min")
-	private double min;
-
 	@Column(name="ORB")
 	private double orb;
 
 	@Column(name="pf")
 	private double pf;
-
-	@Column(name="playerID")
-	private int playerID;
-
-	@Column(name="position")
-	private String position;
 
 	@Column(name="pts")
 	private double pts;
@@ -69,41 +59,74 @@ public class Player implements Serializable {
 
 	@Column(name="stl")
 	private double stl;
-
+	
 	@Column(name="tov")
 	private double tov;
 
-	//bi-directional many-to-one association to Team
+	@Column(name="min")
+	private double min;
+	
+	//bi-directional many-to-one association to player
 	@ManyToOne
-	@JoinColumn(name="teamID")
-	private Team team;
-
-	public Player() {
+	@JoinColumn(name="playerID")
+	private Player player;
+	
+	public Player getPlayer() {
+		return player;
 	}
 
-	public PlayerPK getId() {
-		return this.id;
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
-	public void setId(PlayerPK id) {
-		this.id = id;
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	//bi-directional many-to-one association to Game
+	@ManyToOne
+	@JoinColumn(name="gameID")
+	private Game game;	
+
+	public double get_pm() {
+		return _pm;
+	}
+
+	public void set_pm(double _pm) {
+		this._pm = _pm;
 	}
 
 	public double get_pa() {
-		return this._pa;
+		return _pa;
 	}
 
 	public void set_pa(double _pa) {
 		this._pa = _pa;
 	}
 
-	public double get_pm() {
-		return this._pm;
+	public double getMin() {
+		return min;
 	}
 
-	public void set_pm(double _pm) {
-		this._pm = _pm;
+	public void setMin(double min) {
+		this.min = min;
 	}
+
+	public Playerstats() {
+	}
+
+	public PlayerstatsPK getId() {
+		return this.id;
+	}
+
+	public void setId(PlayerstatsPK id) {
+		this.id = id;
+	}
+
 
 	public double getAst() {
 		return this.ast;
@@ -145,14 +168,6 @@ public class Player implements Serializable {
 		this.fgm = fgm;
 	}
 
-	public double getFp() {
-		return this.fp;
-	}
-
-	public void setFp(double fp) {
-		this.fp = fp;
-	}
-
 	public double getFta() {
 		return this.fta;
 	}
@@ -167,14 +182,6 @@ public class Player implements Serializable {
 
 	public void setFtm(double ftm) {
 		this.ftm = ftm;
-	}
-
-	public double getMin() {
-		return this.min;
-	}
-
-	public void setMin(double min) {
-		this.min = min;
 	}
 
 	public double getOrb() {
@@ -193,21 +200,6 @@ public class Player implements Serializable {
 		this.pf = pf;
 	}
 
-	public int getPlayerID() {
-		return this.playerID;
-	}
-
-	public void setPlayerID(int playerID) {
-		this.playerID = playerID;
-	}
-
-	public String getPosition() {
-		return this.position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
 
 	public double getPts() {
 		return this.pts;
@@ -240,13 +232,5 @@ public class Player implements Serializable {
 	public void setTov(double tov) {
 		this.tov = tov;
 	}
-
-	public Team getTeam() {
-		return this.team;
-	}
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
-
+	
 }

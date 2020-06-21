@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the team database table.
+ * The persistent class for the teamstats database table.
  * 
  */
 @Entity
@@ -17,12 +17,25 @@ public class Teamstats implements Serializable {
 
 	@EmbeddedId
 	private TeamstatsPK id;
-	
-	@Id
-	private String abbriviation;
 
 	@Column(name="3pa")
 	private double _pa;
+
+	public double get_pa() {
+		return _pa;
+	}
+
+	public void set_pa(double _pa) {
+		this._pa = _pa;
+	}
+
+	public double get_pm() {
+		return _pm;
+	}
+
+	public void set_pm(double _pm) {
+		this._pm = _pm;
+	}
 
 	@Column(name="3pm")
 	private double _pm;
@@ -66,9 +79,35 @@ public class Teamstats implements Serializable {
 	@Column(name="tov")
 	private double tov;
 
-
+	//bi-directional many-to-one association to Team
+	@ManyToOne
+	@JoinColumn(name="teamID")
+	private Team team;
+	
+	//bi-directional many-to-one association to Game
+	@ManyToOne
+	@JoinColumn(name="gameID")
+	private Game game;
+	
 	public Teamstats() {
 	}
+	
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 
 	public TeamstatsPK getId() {
 		return this.id;

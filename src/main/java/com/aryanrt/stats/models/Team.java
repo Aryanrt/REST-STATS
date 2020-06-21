@@ -24,8 +24,10 @@ public class Team implements Serializable {
 	@Column(name="3pm")
 	private double _pm;
 
+	@Column(name="ast")
 	private double ast;
 
+	@Column(name="bs")
 	private double bs;
 
 	@Column(name="CA")
@@ -34,19 +36,25 @@ public class Team implements Serializable {
 	@Column(name="DRB")
 	private double drb;
 
+	@Column(name="fga")
 	private double fga;
 
+	@Column(name="fgm")
 	private double fgm;
 
+	@Column(name="fta")
 	private double fta;
 
+	@Column(name="ftm")
 	private double ftm;
 
+	@Column(name="min")
 	private double min;
 
 	@Column(name="ORB")
 	private double orb;
 
+	@Column(name="pf")
 	private double pf;
 
 	@Column(name="PFA")
@@ -55,8 +63,10 @@ public class Team implements Serializable {
 	@Column(name="PGA")
 	private double pga;
 
+	@Column(name="pts")
 	private double pts;
 
+	@Column(name="reb")
 	private double reb;
 
 	@Column(name="SFA")
@@ -65,10 +75,13 @@ public class Team implements Serializable {
 	@Column(name="SGA")
 	private double sga;
 
+	@Column(name="stl")
 	private double stl;
 
+	@Column(name="teamName")
 	private String teamName;
 
+	@Column(name="tov")
 	private double tov;
 
 	//bi-directional many-to-one association to Matchup

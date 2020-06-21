@@ -19,7 +19,9 @@ public class Game implements Serializable {
 
 	private int gameID;
 
+	@Column(name="location")
 	private String location;
+
 
 	//bi-directional many-to-one association to Matchup
 	@ManyToOne
