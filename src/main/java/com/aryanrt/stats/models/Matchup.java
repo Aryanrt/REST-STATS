@@ -17,10 +17,10 @@ public class Matchup implements Serializable {
 
 	@Id
 	private int matchupID;
-
-	//bi-directional many-to-one association to Game
-	@OneToMany(mappedBy="matchup")
-	private List<Game> games;
+//
+//	//bi-directional many-to-one association to Game
+//	@OneToMany(mappedBy="matchupID")
+//	private List<Game> games;
 
 	//bi-directional many-to-one association to Team
 	@ManyToOne
@@ -43,27 +43,27 @@ public class Matchup implements Serializable {
 		this.matchupID = matchupID;
 	}
 
-	public List<Game> getGames() {
-		return this.games;
-	}
+//	public List<Game> getGames() {
+//		return this.games;
+//	}
+//
+//	public void setGames(List<Game> games) {
+//		this.games = games;
+//	}
 
-	public void setGames(List<Game> games) {
-		this.games = games;
-	}
-
-	public Game addGame(Game game) {
-		getGames().add(game);
-		game.setMatchup(this);
-
-		return game;
-	}
-
-	public Game removeGame(Game game) {
-		getGames().remove(game);
-		game.setMatchup(null);
-
-		return game;
-	}
+//	public Game addGame(Game game) {
+//		getGames().add(game);
+//		game.getId().setMatchupID(this);
+//
+//		return game;
+//	}
+//
+//	public Game removeGame(Game game) {
+//		getGames().remove(game);
+//		//game.getId().setMatchup(null);
+//
+//		return game;
+//	}
 
 	public Team getTeam1Bean() {
 		return this.team1Bean;

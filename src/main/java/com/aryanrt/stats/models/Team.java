@@ -18,11 +18,11 @@ public class Team implements Serializable {
 	@Id
 	private String abbriviation;
 
-	@Column(name="3pa")
-	private double _pa;
+	@Column(name="threepa")
+	private double threepa;
 
-	@Column(name="3pm")
-	private double _pm;
+	@Column(name="threepm")
+	private double threepm;
 
 	@Column(name="ast")
 	private double ast;
@@ -78,23 +78,23 @@ public class Team implements Serializable {
 	@Column(name="stl")
 	private double stl;
 
-	@Column(name="teamName")
+	@Column(name="teamname")
 	private String teamName;
 
 	@Column(name="tov")
 	private double tov;
 
-	//bi-directional many-to-one association to Matchup
-	@OneToMany(mappedBy="team1Bean")
-	private List<Matchup> matchups1;
-
-	//bi-directional many-to-one association to Matchup
-	@OneToMany(mappedBy="team2Bean")
-	private List<Matchup> matchups2;
+//	//bi-directional many-to-one association to Matchup
+//	@OneToMany(mappedBy="team1Bean")
+//	private List<Matchup> matchups1;
+//
+//	//bi-directional many-to-one association to Matchup
+//	@OneToMany(mappedBy="team2Bean")
+//	private List<Matchup> matchups2;
 
 	//bi-directional many-to-one association to Player
-	@OneToMany(mappedBy="team")
-	private List<Player> players;
+//	@OneToMany(mappedBy="team")
+//	private List<Player> players;
 
 	public Team() {
 	}
@@ -107,20 +107,20 @@ public class Team implements Serializable {
 		this.abbriviation = abbriviation;
 	}
 
-	public double get_pa() {
-		return this._pa;
+	public double getThreepa() {
+		return this.threepa;
 	}
 
-	public void set_pa(double _pa) {
-		this._pa = _pa;
+	public void setThreepa(double _pa) {
+		this.threepa = _pa;
 	}
 
-	public double get_pm() {
-		return this._pm;
+	public double geThreepm() {
+		return this.threepm;
 	}
 
-	public void set_pm(double _pm) {
-		this._pm = _pm;
+	public void setThreepm(double _pm) {
+		this.threepm = _pm;
 	}
 
 	public double getAst() {
@@ -283,70 +283,70 @@ public class Team implements Serializable {
 		this.tov = tov;
 	}
 
-	public List<Matchup> getMatchups1() {
-		return this.matchups1;
-	}
-
-	public void setMatchups1(List<Matchup> matchups1) {
-		this.matchups1 = matchups1;
-	}
-
-	public Matchup addMatchups1(Matchup matchups1) {
-		getMatchups1().add(matchups1);
-		matchups1.setTeam1Bean(this);
-
-		return matchups1;
-	}
-
-	public Matchup removeMatchups1(Matchup matchups1) {
-		getMatchups1().remove(matchups1);
-		matchups1.setTeam1Bean(null);
-
-		return matchups1;
-	}
-
-	public List<Matchup> getMatchups2() {
-		return this.matchups2;
-	}
-
-	public void setMatchups2(List<Matchup> matchups2) {
-		this.matchups2 = matchups2;
-	}
-
-	public Matchup addMatchups2(Matchup matchups2) {
-		getMatchups2().add(matchups2);
-		matchups2.setTeam2Bean(this);
-
-		return matchups2;
-	}
-
-	public Matchup removeMatchups2(Matchup matchups2) {
-		getMatchups2().remove(matchups2);
-		matchups2.setTeam2Bean(null);
-
-		return matchups2;
-	}
-
-	public List<Player> getPlayers() {
-		return this.players;
-	}
-
-	public void setPlayers(List<Player> players) {
-		this.players = players;
-	}
-
-	public Player addPlayer(Player player) {
-		getPlayers().add(player);
-		player.setTeam(this);
-
-		return player;
-	}
-
-	public Player removePlayer(Player player) {
-		getPlayers().remove(player);
-		player.setTeam(null);
-
-		return player;
-	}
+//	public List<Matchup> getMatchups1() {
+//		return this.matchups1;
+//	}
+//
+//	public void setMatchups1(List<Matchup> matchups1) {
+//		this.matchups1 = matchups1;
+//	}
+//
+//	public Matchup addMatchups1(Matchup matchups1) {
+//		getMatchups1().add(matchups1);
+//		matchups1.setTeam1Bean(this);
+//
+//		return matchups1;
+//	}
+//
+//	public Matchup removeMatchups1(Matchup matchups1) {
+//		getMatchups1().remove(matchups1);
+//		matchups1.setTeam1Bean(null);
+//
+//		return matchups1;
+//	}
+//
+//	public List<Matchup> getMatchups2() {
+//		return this.matchups2;
+////	}
+//
+//	public void setMatchups2(List<Matchup> matchups2) {
+//		this.matchups2 = matchups2;
+//	}
+//
+//	public Matchup addMatchups2(Matchup matchups2) {
+//		getMatchups2().add(matchups2);
+//		matchups2.setTeam2Bean(this);
+//
+//		return matchups2;
+//	}
+//
+//	public Matchup removeMatchups2(Matchup matchups2) {
+//		getMatchups2().remove(matchups2);
+//		matchups2.setTeam2Bean(null);
+//
+//		return matchups2;
+//	}
+//
+//	public List<Player> getPlayers() {
+//		return this.players;
+//	}
+//
+//	public void setPlayers(List<Player> players) {
+//		this.players = players;
+//	}
+//
+//	public Player addPlayer(Player player) {
+//		getPlayers().add(player);
+//	//	player.getId().setTeam(this);
+//
+//		return player;
+//	}
+//
+//	public Player removePlayer(Player player) {
+//		getPlayers().remove(player);
+////		player.getId().setTeam(null);
+//
+//		return player;
+//	}
 
 }
