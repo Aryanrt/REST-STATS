@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="matchup")
 @NamedQuery(name="Matchup.findAll", query="SELECT m FROM Matchup m")
-public class Matchup  extends EntityModel<Matchup> implements Serializable {
+public class Matchup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

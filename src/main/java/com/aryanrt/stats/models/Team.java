@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name="team")
 @NamedQuery(name="Team.findAll", query="SELECT t FROM Team t")
-public class Team extends RepresentationModel<Team> implements Serializable {
+public class Team implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
