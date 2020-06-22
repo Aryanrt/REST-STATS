@@ -1,6 +1,7 @@
 package com.aryanrt.stats.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,29 +9,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aryanrt.stats.models.Matchup;
-import com.aryanrt.stats.repositories.MatchupRepository;
+import com.aryanrt.stats.models.Team;
+import com.aryanrt.stats.repositories.TeamRepository;
 
 import net.minidev.json.JSONArray;
 
 @RestController
-public class MatchupController {
+public class TeamController {
 	
 	@Autowired
-	private MatchupRepository repository;
+	private TeamRepository repository;
 
 
 		  // Aggregate root
 
-	  @GetMapping("/matchups")
-	  public Object all() {
-	    return (List<Matchup>) repository.findAll();
+	  @GetMapping("/teams")
+	  public List<Team> all() {
+	    return (List<Team>) repository.findAll();
 	  }
 
-	  @GetMapping("/matchups/{matchupID}")
-	  public Matchup one(@PathVariable int matchupID) {
+	  @GetMapping("/teams/{abbriviation}")
+	  public Optional<Team> one(@PathVariable String abbriviation) {
 
-	    return repository.findById(matchupID);
+	    return repository.findById(abbriviation);
 	  }
 
 }

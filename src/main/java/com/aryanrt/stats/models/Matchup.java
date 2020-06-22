@@ -25,12 +25,12 @@ public class Matchup implements Serializable {
 	//bi-directional many-to-one association to Team
 	@ManyToOne
 	@JoinColumn(name="team1")
-	private Team team1Bean;
+	private Team team1;
 
 	//bi-directional many-to-one association to Team
 	@ManyToOne
 	@JoinColumn(name="team2")
-	private Team team2Bean;
+	private Team team2;
 
 	public Matchup() {
 	}
@@ -65,20 +65,20 @@ public class Matchup implements Serializable {
 //		return game;
 //	}
 
-	public Team getTeam1Bean() {
-		return this.team1Bean;
+	public Team getTeam1() {
+		return this.team1;
 	}
 
-	public void setTeam1Bean(Team team1Bean) {
-		this.team1Bean = team1Bean;
+	public void setTeam1(Team team1) {
+		this.team1 = team1;
 	}
 
-	public Team getTeam2Bean() {
-		return this.team2Bean;
+	public Team getTeam2() {
+		return this.team2;
 	}
 
-	public void setTeam2Bean(Team team2Bean) {
-		this.team2Bean = team2Bean;
+	public void setTeam2(Team team2) {
+		this.team2 = team2;
 	}
 
 }
