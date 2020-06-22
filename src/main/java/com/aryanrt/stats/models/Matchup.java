@@ -2,6 +2,10 @@ package com.aryanrt.stats.models;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.List;
 
 
@@ -12,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="matchup")
 @NamedQuery(name="Matchup.findAll", query="SELECT m FROM Matchup m")
-public class Matchup implements Serializable {
+public class Matchup  extends EntityModel<Matchup> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

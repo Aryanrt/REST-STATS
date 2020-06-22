@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.aryanrt.stats.models.Team;
 
-@RepositoryRestResource(collectionResourceRel = "team", path = "team")
+@RepositoryRestResource(collectionResourceRel = "teams", path = "teams")
 public interface TeamRepository extends PagingAndSortingRepository<Team, String> {
 
     Optional<Team> findById(String abbriviation);

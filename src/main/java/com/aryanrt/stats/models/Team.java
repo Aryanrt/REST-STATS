@@ -2,6 +2,11 @@ package com.aryanrt.stats.models;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.List;
 
 
@@ -12,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name="team")
 @NamedQuery(name="Team.findAll", query="SELECT t FROM Team t")
-public class Team implements Serializable {
+public class Team extends RepresentationModel<Team> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -95,7 +100,7 @@ public class Team implements Serializable {
 	//bi-directional many-to-one association to Player
 //	@OneToMany(mappedBy="team")
 //	private List<Player> players;
-
+	@JsonCreator
 	public Team() {
 	}
 
