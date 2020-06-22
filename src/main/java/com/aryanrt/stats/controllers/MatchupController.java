@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aryanrt.stats.models.Game;
+import com.aryanrt.stats.models.GamePK;
 import com.aryanrt.stats.models.Matchup;
+import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.MatchupRepository;
 import com.google.gson.JsonObject;
 
@@ -29,16 +32,23 @@ public class MatchupController{
 	
 	@Autowired
 	private MatchupRepository repository;
+	
+	@Autowired
+	private GameRepository gameRepository;
 
 	  @GetMapping("/matchups")
 	  public JsonObject all(HttpServletRequest request)
 	  {
+		  List<Game> games = ((List<Game>) gameRepository.findAll());
 		  String baseURL = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
 		  JsonObject result = new JsonObject();
 		  for(int i=0; i < ((List<Matchup>) repository.findAll()).size(); i++)
 		  {
 			  JsonObject matchupJson = new JsonObject();
 			  Matchup matchup = ((List<Matchup>) repository.findAll()).get(i);
+			  
+			  //GamePK gamePK = new GamePK();
+			  //gamePK.a
 			  
 			  //self Link
 			  matchupJson.addProperty("href",baseURL+"/matchups/"+matchup.getMatchupID());
@@ -56,6 +66,20 @@ public class MatchupController{
 			  temp.addProperty("Name",matchup.getTeam2().getTeamName());
 			  temp.addProperty("href",baseURL+"/teams/"+matchup.getTeam2().getAbbriviation());			  
 			  matchupJson.add("Team 2", temp);			  
+			  			  
+			  //Games Json			  
+			  temp = new JsonObject();			  
+			  for( int j = 0 ; j < games.size(); j++)
+			  {
+				Game game = games.get(j);
+				if(game.getId().getMatchupID() == matchup)
+				{
+					String date = game.getId().getDate();
+					temp.addProperty(date.substring(0, 4)+"/"+date.substring(4, 6)+"/"+ date.substring(6),baseURL+"/games/"+ game.getGameID());	
+				}
+			  }
+			  
+			  matchupJson.add("Games", temp);				  
 			  
 			  result.add(Integer.toString(i), matchupJson);			  
 		  }
@@ -86,9 +110,21 @@ public class MatchupController{
 		  temp.addProperty("Abbriviation",matchup.getTeam2().getAbbriviation());
 		  temp.addProperty("Name",matchup.getTeam2().getTeamName());
 		  temp.addProperty("href",baseURL+"/teams/"+matchup.getTeam2().getAbbriviation());			  
-		  matchupJson.add("Team 2", temp);			  
+		  matchupJson.add("Team 2", temp);		
 		  
-		  //result.add(Integer.toString(i), matchupJson);	
+		  //Games Json
+		  temp = new JsonObject();		  
+		  List<Game> games = ((List<Game>) gameRepository.findAll());
+		  for( int j = 0 ; j < games.size(); j++)
+		  {			
+			Game game = games.get(j);
+			if(game.getId().getMatchupID() == matchup)
+			{
+				String date = game.getId().getDate();
+				temp.addProperty(date.substring(0, 4)+"/"+date.substring(4, 6)+"/"+ date.substring(6),baseURL+"/games/"+ game.getGameID());	
+			}
+		  }
+		  matchupJson.add("Games", temp);	
 		  
 		  return matchupJson;
 		
