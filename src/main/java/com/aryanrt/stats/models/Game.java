@@ -3,6 +3,9 @@ package com.aryanrt.stats.models;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.NaturalId;
+
 
 /**
  * The persistent class for the game database table.
@@ -18,6 +21,7 @@ public class Game implements Serializable {
 	@Column(name="id")
 	private GamePK id;
 
+	@Column(name="gameID")
 	private int gameID;
 
 	@Column(name="location")

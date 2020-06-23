@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aryanrt.stats.models.Game;
 import com.aryanrt.stats.models.Matchup;
+import com.aryanrt.stats.models.Teamstats;
+import com.aryanrt.stats.models.TeamstatsPK;
 import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.MatchupRepository;
+import com.aryanrt.stats.repositories.TeamstatsRepository;
 import com.google.gson.JsonObject;
 
 @RestController
@@ -23,6 +26,9 @@ public class GameController {
 //	
 	@Autowired
 	private GameRepository gameRepository;
+	
+	@Autowired
+	private TeamstatsRepository teamstatsRepository;
 
 	  @GetMapping("/games")
 	  public JsonObject all(HttpServletRequest request)
@@ -35,10 +41,12 @@ public class GameController {
 			  JsonObject matchupJson = new JsonObject();
 			  Game game = games.get(i);
 			  Matchup matchup = game.getId().getMatchupID();
+			  String date = game.getId().getDate();
 
 			  //self Link
 			  matchupJson.addProperty("href",baseURL+"/games/"+game.getGameID());
 			  matchupJson.addProperty("Location",game.getLocation());
+			  matchupJson.addProperty("Date", date.substring(0,4)+"/"+ date.substring(4,6)+"/"+ date.substring(6) );
 			  
 			  //matchup JSON
 			  JsonObject temp = new JsonObject();
@@ -63,16 +71,21 @@ public class GameController {
 		  JsonObject matchupJson = new JsonObject();
 		  Game game = gameRepository.findByGameID(id);
 		  Matchup matchup = game.getId().getMatchupID();
-
+		  String date = game.getId().getDate();
+		  
 		  //self Link
 		  matchupJson.addProperty("href",baseURL+"/games/"+id);
 		  matchupJson.addProperty("Location",game.getLocation());
-		  
-		  //matchup JSON
+		  matchupJson.addProperty("Date", date.substring(0,4)+"/"+ date.substring(4,6)+"/"+ date.substring(6) );
+
+		  //matchup and teamstats JSON
 		  JsonObject temp = new JsonObject();
+		  temp.addProperty("href",baseURL+"/matchups/"+matchup.getMatchupID());
 		  temp.addProperty("team1",matchup.getTeam1().getTeamName());
-		  temp.addProperty("team2",matchup.getTeam2().getTeamName());			  
-		  temp.addProperty("href",baseURL+"/matchups/"+matchup.getMatchupID());			  
+		  temp.addProperty("team1 stats",baseURL+"/teamstats/"+matchup.getTeam1().getAbbriviation()+"/" +game.getGameID());
+		  temp.addProperty("team2",matchup.getTeam2().getTeamName());
+		  temp.addProperty("team2 stats",baseURL+"/teamstats/"+matchup.getTeam2().getAbbriviation()+"/" +game.getGameID());
+		  			  
 		  matchupJson.add("Matchup", temp);
 		  		  
 		  
