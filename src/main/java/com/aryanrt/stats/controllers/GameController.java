@@ -50,9 +50,11 @@ public class GameController {
 			  
 			  //matchup JSON
 			  JsonObject temp = new JsonObject();
+			  temp.addProperty("href",baseURL+"/matchups/"+matchup.getMatchupID());	
 			  temp.addProperty("team1",matchup.getTeam1().getTeamName());
-			  temp.addProperty("team2",matchup.getTeam2().getTeamName());			  
-			  temp.addProperty("href",baseURL+"/matchups/"+matchup.getMatchupID());			  
+			  temp.addProperty("team1 stats",baseURL+"/teamstats/"+matchup.getTeam1().getAbbriviation()+"/" +game.getGameID());
+			  temp.addProperty("team2",matchup.getTeam2().getTeamName());		
+			  temp.addProperty("team2 stats",baseURL+"/teamstats/"+matchup.getTeam2().getAbbriviation()+"/" +game.getGameID());		  
 			  matchupJson.add("Matchup", temp);
 			  		  
 			  

@@ -38,56 +38,13 @@ public class TeamstatsController {
 
 	// Aggregate root
 
-//	  @GetMapping("/teamstats")
-//	  public JsonObject all(HttpServletRequest request)
-//	  {
-//		  List<Game> games = ((List<Game>) gameRepository.findAll());
-//		  List<Matchup> matchups = ((List<Matchup>) matchupRepository.findAll());
-//		  
-//		  String baseURL = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
-//		  JsonObject result = new JsonObject();
-//		  for(int i=0; i < ((List<Team>) repository.findAll()).size(); i++)
-//		  {
-//			  JsonObject matchupJson = new JsonObject();
-//			  Team team = ((List<Team>) repository.findAll()).get(i);
-//			  
-//			  //self Link
-//			  matchupJson.addProperty("href",baseURL+"/teams/"+team.getAbbriviation());
-//			  matchupJson.addProperty("name",team.getTeamName());
-//			  matchupJson.addProperty("Abbriviation",team.getAbbriviation());
-//			  	  			  
-//			  //matchups Json			  
-//			  JsonObject temp = new JsonObject();			  
-//			  for( int j = 0 ; j < matchups.size(); j++)
-//			  {
-//				Matchup matchup = matchups.get(j);
-//				if(matchup.getTeam1() == team)
-//					temp.addProperty(matchup.getTeam2().getTeamName(),baseURL+"/matchups/"+ matchup.getMatchupID());	
-//				else if(matchup.getTeam2() == team )
-//					temp.addProperty(matchup.getTeam1().getTeamName(),baseURL+"/matchups/"+ matchup.getMatchupID());	
-//				
-//			  }			  
-//			  matchupJson.add("Matchups", temp);	
-//			  
-//			  //Games Json			  
-//			  temp = new JsonObject();			  
-//			  for( int j = 0 ; j < games.size(); j++)
-//			  {
-//				Game game = games.get(j);
-//				if(game.getId().getMatchupID().getTeam1() == team || game.getId().getMatchupID().getTeam2() == team )
-//				{
-//					String date = game.getId().getDate();
-//					temp.addProperty(date.substring(0, 4)+"/"+date.substring(4, 6)+"/"+ date.substring(6),baseURL+"/games/"+ game.getGameID());	
-//				}
-//			  }			  
-//			  matchupJson.add("Games", temp);			
-//			  			  
-//			  result.add(Integer.toString(i), matchupJson);			  
-//		  }
-//		
-//	    return result;
-//	  }
-//
+	  @GetMapping("/teamstats")
+	  public JsonObject all(HttpServletRequest request)
+	  {
+		 //This looks super unnecssary
+	    return null;
+	  }
+
 	@GetMapping("/teamstats/{teamID}/{gameID}")
 	public JsonObject one(@PathVariable String teamID, @PathVariable String gameID, HttpServletRequest request) {
 
@@ -97,11 +54,12 @@ public class TeamstatsController {
 		Team team2 = game.getId().getMatchupID().getTeam1() != team ? game.getId().getMatchupID().getTeam1() :game.getId().getMatchupID().getTeam2();
 		String date = game.getId().getDate();
 		Teamstats teamstat = teamstatsRepository.findById(new TeamstatsPK(Integer.parseInt(gameID),team)).orElse(null);
+		Teamstats team2stat = teamstatsRepository.findById(new TeamstatsPK(Integer.parseInt(gameID),team2)).orElse(null);
 		
 		JsonObject result = new JsonObject();
-		result.addProperty("team", team.getAbbriviation());
-		result.addProperty("against", team2.getAbbriviation());
-		result.addProperty(team2.getAbbriviation() +" stat", baseURL+"/teamstats/"+ team2.getAbbriviation()+"/"+ gameID);
+		result.addProperty("team1", team.getAbbriviation());
+		result.addProperty("team2", team2.getAbbriviation());
+		//result.addProperty(team2.getAbbriviation() +" stat", baseURL+"/teamstats/"+ team2.getAbbriviation()+"/"+ gameID);
 		result.addProperty("Date", date.substring(0,4)+"/"+ date.substring(4,6)+"/"+ date.substring(6) );
 		result.addProperty("location", game.getLocation());
 		
@@ -122,7 +80,26 @@ public class TeamstatsController {
 		temp.addProperty("FTM", teamstat.getFtm());
 		temp.addProperty("FTA", teamstat.getFta());
 		
-		result.add(team.getAbbriviation()+" stat", temp);
+		result.add(team.getAbbriviation()+" game stats", temp);
+		
+		temp = new JsonObject();
+		temp.addProperty("points", team2stat.getPts());
+		temp.addProperty("Rebounds", team2stat.getReb());
+		temp.addProperty("Offensive Rebounds", team2stat.getOrb());
+		temp.addProperty("Defensive Rebounds", team2stat.getDrb());
+		temp.addProperty("Assists", team2stat.getAst());
+		temp.addProperty("Block Shots", team2stat.getBs());
+		temp.addProperty("Steals", team2stat.getStl());
+		temp.addProperty("Turnovers", team2stat.getTov());
+		temp.addProperty("Fouls", team2stat.getPf());
+		temp.addProperty("FGM", team2stat.getFgm());
+		temp.addProperty("FGA", team2stat.getFga());
+		temp.addProperty("3GM", team2stat.getThreepm());
+		temp.addProperty("3GA", team2stat.getThreepm());
+		temp.addProperty("FTM", team2stat.getFtm());
+		temp.addProperty("FTA", team2stat.getFta());
+		
+		result.add(team2.getAbbriviation()+" game stats", temp);
 		
 		
 		return result;
