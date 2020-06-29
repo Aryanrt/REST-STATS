@@ -7,6 +7,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -97,9 +98,10 @@ public class Team implements Serializable {
 //	@OneToMany(mappedBy="team2Bean")
 //	private List<Matchup> matchups2;
 
-	//bi-directional many-to-one association to Player
-//	@OneToMany(mappedBy="team")
-//	private List<Player> players;
+	public double getThreepm() {
+		return threepm;
+	}
+
 	@JsonCreator
 	public Team() {
 	}

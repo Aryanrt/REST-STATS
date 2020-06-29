@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aryanrt.stats.models.Game;
 import com.aryanrt.stats.models.Matchup;
+import com.aryanrt.stats.models.Player;
 import com.aryanrt.stats.models.Team;
 import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.MatchupRepository;
+import com.aryanrt.stats.repositories.PlayerRepository;
 import com.aryanrt.stats.repositories.TeamRepository;
 import com.google.gson.JsonObject;
 
@@ -35,7 +37,9 @@ public class TeamController {
 	@Autowired
 	private MatchupRepository matchupRepository;
 
-		  // Aggregate root
+	
+	@Autowired
+	private PlayerRepository playerRepository;
 
 	  @GetMapping("/teams")
 	  public JsonObject all(HttpServletRequest request)
@@ -94,18 +98,28 @@ public class TeamController {
 		  List<Matchup> matchups = ((List<Matchup>) matchupRepository.findAll());
 		  
 		  String baseURL = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
-		  JsonObject result = new JsonObject();
 		
-		  JsonObject matchupJson = new JsonObject();
+		  JsonObject result = new JsonObject();
 		  Team team = repository.findByAbbriviation(abbriviation);
 		  
 		  //self Link
-		  matchupJson.addProperty("href",baseURL+"/teams/"+team.getAbbriviation());
-		  matchupJson.addProperty("name",team.getTeamName());
-		  matchupJson.addProperty("Abbriviation",team.getAbbriviation());
-		  	  			  
+		  result.addProperty("href",baseURL+"/teams/"+team.getAbbriviation());
+		  result.addProperty("name",team.getTeamName());
+		  result.addProperty("Abbriviation",team.getAbbriviation());
+		  
+		  //players Json			  
+		  JsonObject temp = new JsonObject();	
+		  for( int j = 0 ; j < ((List<Player>)playerRepository.findAll()).size(); j++)
+		  {
+			 Player player = ((List<Player>)playerRepository.findAll()).get(j);
+			 if(player.getId().getTeam() == team)
+				 temp.addProperty("Player "+ j,baseURL+"/players/"+player.getPlayerID());
+		  }		
+			 
+		  result.add("Players", temp);	
+		  
 		  //matchups Json			  
-		  JsonObject temp = new JsonObject();			  
+		  temp = new JsonObject();			  
 		  for( int j = 0 ; j < matchups.size(); j++)
 		  {
 			Matchup matchup = matchups.get(j);
@@ -115,7 +129,7 @@ public class TeamController {
 				temp.addProperty(matchup.getTeam1().getTeamName(),baseURL+"/matchups/"+ matchup.getMatchupID());	
 			
 		  }			  
-		  matchupJson.add("Matchups", temp);	
+		  result.add("Matchups", temp);	
 		  
 		  //Games Json			  
 		  temp = new JsonObject();			  
@@ -128,9 +142,9 @@ public class TeamController {
 				temp.addProperty(date.substring(0, 4)+"/"+date.substring(4, 6)+"/"+ date.substring(6),baseURL+"/games/"+ game.getGameID());	
 			}
 		  }			  
-		  matchupJson.add("Games", temp);			
+		  result.add("Games", temp);			
 		
-	    return matchupJson;
+	    return result;
 	  }
 
 }
