@@ -6,19 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.aryanrt.stats.models.Game;
-import com.aryanrt.stats.models.Matchup;
 import com.aryanrt.stats.models.Player;
 import com.aryanrt.stats.repositories.PlayerRepository;
 import com.google.gson.JsonObject;
-
-//import com.aryanrt.stats.models.Player;
-//import com.aryanrt.stats.repositories.PlayerRepository;
 
 @RestController
 public class PlayerController {
@@ -46,17 +39,7 @@ public class PlayerController {
 			  String lastName = Character.toUpperCase(player.getId().getLastName().charAt(0))+player.getId().getLastName().substring(1);;
 			  
 			  playerJson.addProperty("Name",  firstName + " " + lastName );
-			  playerJson.addProperty("Team",player.getId().getTeam().getTeamName().substring(0,player.getId().getTeam().getTeamName().length()-1));
-			  
-//			  //matchup JSON
-//			  JsonObject temp = new JsonObject();
-//			  temp.addProperty("team1",matchup.getTeam1().getTeamName());
-//			  temp.addProperty("team1 stats",baseURL+"/teamstats/"+matchup.getTeam1().getAbbriviation()+"/" +game.getGameID());
-//			  temp.addProperty("team2",matchup.getTeam2().getTeamName());		
-//			  temp.addProperty("team2 stats",baseURL+"/teamstats/"+matchup.getTeam2().getAbbriviation()+"/" +game.getGameID());		  
-//			  matchupJson.add("Season Averages:", temp);
-//			  		  
-			  
+			  playerJson.addProperty("Team",player.getId().getTeam().getTeamName().substring(0,player.getId().getTeam().getTeamName().length()-1));	  
 			  result.add(Integer.toString(player.getPlayerID()), playerJson);
 		  }
 		  return result;
@@ -101,6 +84,7 @@ public class PlayerController {
 		  temp.addProperty("FTM",player.getFtm());
 		  temp.addProperty("Minutes",player.getMin());
 		  temp.addProperty("Turnovers",player.getTov());
+		  temp.addProperty("Personal Fouls",player.getPf());
 		  
 		  result.add("Season Averages(per game)", temp);
 
