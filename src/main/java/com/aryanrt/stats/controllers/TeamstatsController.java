@@ -33,15 +33,12 @@ public class TeamstatsController {
 	@Autowired
 	private TeamRepository teamRepository;
 
-	@Autowired
-	private MatchupRepository matchupRepository;
-
 	// Aggregate root
 
 	  @GetMapping("/teamstats")
 	  public JsonObject all(HttpServletRequest request)
 	  {
-		 //This looks super unnecssary
+		 //This looks super necessary
 	    return null;
 	  }
 

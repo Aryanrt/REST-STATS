@@ -111,9 +111,13 @@ public class TeamController {
 		  JsonObject temp = new JsonObject();	
 		  for( int j = 0 ; j < ((List<Player>)playerRepository.findAll()).size(); j++)
 		  {
-			 Player player = ((List<Player>)playerRepository.findAll()).get(j);
-			 if(player.getId().getTeam() == team)
-				 temp.addProperty("Player "+ j,baseURL+"/players/"+player.getPlayerID());
+			Player player = ((List<Player>)playerRepository.findAll()).get(j);
+			if(player.getId().getTeam() != team)
+				  continue;
+			 
+			 String firstName = Character.toUpperCase(player.getId().getFirstName().charAt(0))+player.getId().getFirstName().substring(1);
+			 String lastName = Character.toUpperCase(player.getId().getLastName().charAt(0))+player.getId().getLastName().substring(1);;
+			 temp.addProperty(firstName+" "+ lastName ,baseURL+"/players/"+player.getPlayerID());
 		  }		
 			 
 		  result.add("Players", temp);	
@@ -124,9 +128,9 @@ public class TeamController {
 		  {
 			Matchup matchup = matchups.get(j);
 			if(matchup.getTeam1() == team)
-				temp.addProperty(matchup.getTeam2().getTeamName(),baseURL+"/matchups/"+ matchup.getMatchupID());	
+				temp.addProperty(matchup.getTeam2().getTeamName().substring(0,matchup.getTeam2().getTeamName().length()-1),baseURL+"/matchups/"+ matchup.getMatchupID());	
 			else if(matchup.getTeam2() == team )
-				temp.addProperty(matchup.getTeam1().getTeamName(),baseURL+"/matchups/"+ matchup.getMatchupID());	
+				temp.addProperty(matchup.getTeam1().getTeamName().substring(0, matchup.getTeam1().getTeamName().length()-1),baseURL+"/matchups/"+ matchup.getMatchupID());	
 			
 		  }			  
 		  result.add("Matchups", temp);	

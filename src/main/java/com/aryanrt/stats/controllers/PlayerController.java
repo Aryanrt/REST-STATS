@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.aryanrt.stats.models.Player;
+import com.aryanrt.stats.models.Playerstat;
+import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.PlayerRepository;
+import com.aryanrt.stats.repositories.PlayerstatRepository;
 import com.google.gson.JsonObject;
 
 @RestController
@@ -18,6 +21,11 @@ public class PlayerController {
 	
 	@Autowired
 	private PlayerRepository playerRepository;
+	
+	@Autowired
+	private PlayerstatRepository playerstatRepository;
+	@Autowired
+	private GameRepository gameRepository;
 
 
 	  // Aggregate root
@@ -87,6 +95,15 @@ public class PlayerController {
 		  temp.addProperty("Personal Fouls",player.getPf());
 		  
 		  result.add("Season Averages(per game)", temp);
+		  
+		  temp = new JsonObject();
+		  for( Playerstat stat: playerstatRepository.findAll())
+		  {
+			  if(stat.getId().getPlayerID() != id)
+				  continue;
+			  temp.addProperty(Integer.toString(stat.getId().getGameID()), baseURL+"/playerstats/"+stat.getId().getPlayerID()+"/"+stat.getId().getGameID());
+		  }
+		  result.add("Individual Stats", temp);
 
 		  
 		

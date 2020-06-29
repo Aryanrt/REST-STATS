@@ -104,13 +104,6 @@ public class Playerstat implements Serializable {
 		this.threepm = threepm;
 	}
 
-	public double get_pa() {
-		return threepa;
-	}
-
-	public void set_pa(double threepa) {
-		this.threepa = threepa;
-	}
 
 	public String getMin() {
 		return min;
