@@ -6,5 +6,5 @@ import com.aryanrt.stats.models.Playerstat;
 import com.aryanrt.stats.models.PlayerstatsPK;
 
 @RepositoryRestResource(collectionResourceRel = "playerstat", path = "playerstat")
-public interface PlayerstatsRepository extends PagingAndSortingRepository<Playerstat, PlayerstatsPK> {
+public interface PlayerstatRepository extends PagingAndSortingRepository<Playerstat, PlayerstatsPK> {
 }

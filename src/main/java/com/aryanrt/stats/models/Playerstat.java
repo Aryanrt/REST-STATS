@@ -31,6 +31,28 @@ public class Playerstat implements Serializable {
 
 	@Column(name="threepm")
 	private double threepm;
+	
+	@Column(name="FP")
+	private double FP;
+	
+	@Column(name="PM")
+	private double PM;
+
+	public double getPM() {
+		return PM;
+	}
+
+	public void setPM(double pM) {
+		PM = pM;
+	}
+
+	public double getFP() {
+		return FP;
+	}
+
+	public void setFP(double fP) {
+		FP = fP;
+	}
 
 	@Column(name="ast")
 	private double ast;
@@ -72,7 +94,7 @@ public class Playerstat implements Serializable {
 	private double tov;
 
 	@Column(name="min")
-	private double min;
+	private String min;
 
 	public double getThreepm() {
 		return threepm;
@@ -90,11 +112,11 @@ public class Playerstat implements Serializable {
 		this.threepa = threepa;
 	}
 
-	public double getMin() {
+	public String getMin() {
 		return min;
 	}
 
-	public void setMin(double min) {
+	public void setMin(String min) {
 		this.min = min;
 	}
 
