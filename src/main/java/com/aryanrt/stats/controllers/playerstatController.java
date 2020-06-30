@@ -71,7 +71,7 @@ public class playerstatController {
 		  }
 		  
 		  
-		  result.addProperty("href",baseURL+"/teamstats/"+playerID+"/"+gameID);
+		  result.addProperty("href",baseURL+"/playerstats/"+playerID+"/"+gameID);
 			  
 		  String firstName = Character.toUpperCase(player.getId().getFirstName().charAt(0))+player.getId().getFirstName().substring(1);
 		  String lastName = Character.toUpperCase(player.getId().getLastName().charAt(0))+player.getId().getLastName().substring(1);;
