@@ -96,8 +96,8 @@ public class playerstatController {
 		  temp.addProperty("Off Rebounds",stat.getOrb());
 		  temp.addProperty("Def Rebounds",stat.getDrb());
 		  temp.addProperty("FG %",(stat.getFga() != 0) ? Double.parseDouble(df.format(stat.getFgm() / stat.getFga())) : 0) ;
-		  temp.addProperty("FGA",player.getFga());
-		  temp.addProperty("FGM",player.getFgm());
+		  temp.addProperty("FGA",stat.getFga());
+		  temp.addProperty("FGM",stat.getFgm());
 		  temp.addProperty("3P %",stat.getThreepa() != 0 ?  Double.parseDouble(df.format(stat.getThreepm()/stat.getThreepa())):0);
 		  temp.addProperty("3PA",stat.getThreepa());
 		  temp.addProperty("3PM",stat.getThreepm());
