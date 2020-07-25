@@ -1,5 +1,5 @@
-# REST API for NBA Statiscis
-## Deployed to: https://nba-api-aryan.herokuapp.com
+# REST API for NBA Statistics
+## Deployed to: http://nba-api-aryan.herokuapp.com
 ### Valid links:
 * https://nba-api-aryan.herokuapp.com/teams
 * https://nba-api-aryan.herokuapp.com/teams/{teamID}
