@@ -1,3 +1,4 @@
+
 INSERT INTO team (teamName, abbriviation, pts, reb, DRB, ORB, ast, stl, bs, tov, pf, min, fga, fgm, threepa, threepm, fta, ftm, PGA, SGA, SFA, PFA, CA) VALUES
 ('Atlanta Hawks ', 'ATL', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('Brooklyn Nets ', 'BKN', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
