@@ -23,7 +23,7 @@ public class RestNbaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RestNbaApplication.class, args);
 	}
-
+}
 @RestController
 class ServiceInstanceRestController {
 
