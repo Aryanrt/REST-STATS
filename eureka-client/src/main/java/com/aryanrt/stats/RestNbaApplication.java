@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -23,16 +23,16 @@ public class RestNbaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RestNbaApplication.class, args);
 	}
-}
-@RestController
-class ServiceInstanceRestController {
+ }
+// @RestController
+// class ServiceInstanceRestController {
 
-	@Autowired
-	private DiscoveryClient discoveryClient;
+// 	@Autowired
+// 	private DiscoveryClient discoveryClient;
 
-	@RequestMapping("/service-instances/{applicationName}")
-	public List<ServiceInstance> serviceInstancesByApplicationName(
-			@PathVariable String applicationName) {
-		return this.discoveryClient.getInstances(applicationName);
-	}
-}
+// 	@RequestMapping("/service-instances/{applicationName}")
+// 	public List<ServiceInstance> serviceInstancesByApplicationName(
+// 			@PathVariable String applicationName) {
+// 		return this.discoveryClient.getInstances(applicationName);
+// 	}
+// }

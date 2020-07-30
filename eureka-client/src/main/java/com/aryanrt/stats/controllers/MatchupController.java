@@ -1,10 +1,7 @@
 package com.aryanrt.stats.controllers;
 
 import java.util.Collection;
-//import org.json;
 import java.util.List;
-import java.util.stream.Collectors;
-//import org.springframework.hateoas.Resource;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +20,7 @@ import com.aryanrt.stats.models.Matchup;
 import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.MatchupRepository;
 import com.google.gson.JsonObject;
+import com.google.gson.Gson;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -36,7 +34,7 @@ public class MatchupController{
 	@Autowired
 	private GameRepository gameRepository;
 
-	  @GetMapping("/matchups")
+	  @GetMapping(value="/matchups", produces="application/json")
 	  public JsonObject all(HttpServletRequest request)
 	  {
 		  List<Game> games = ((List<Game>) gameRepository.findAll());
@@ -46,9 +44,6 @@ public class MatchupController{
 		  {
 			  JsonObject matchupJson = new JsonObject();
 			  Matchup matchup = ((List<Matchup>) repository.findAll()).get(i);
-			  
-			  //GamePK gamePK = new GamePK();
-			  //gamePK.a
 			  
 			  //self Link
 			  matchupJson.addProperty("href",baseURL+"/matchups/"+matchup.getMatchupID());
@@ -83,11 +78,11 @@ public class MatchupController{
 			  
 			  result.add(Integer.toString(i), matchupJson);			  
 		  }
-		
+
 	    return result;
 	  }
 
-	  @GetMapping("/matchups/{id}")
+	  @GetMapping(value="/matchups/{id}",produces="application/json")
 	  public JsonObject one(@PathVariable int id, HttpServletRequest request) {
 
 		  String baseURL = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());

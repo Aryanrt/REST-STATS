@@ -30,7 +30,7 @@ public class PlayerController {
 
 	  // Aggregate root
 
-	  @GetMapping("/players")
+	  @GetMapping(value="/players",produces="application/json")
 	  JsonObject all(HttpServletRequest request) 
 	  {
 		  List<Player> players = ((List<Player>) playerRepository.findAll());
@@ -54,7 +54,7 @@ public class PlayerController {
 	  }
 
 
-	  @GetMapping("/players/{id}")
+	  @GetMapping(value="/players/{id}", produces="application/json")
 	  JsonObject one(@PathVariable int id, HttpServletRequest request) {
 
 		  Player player = playerRepository.findByPlayerID(id);

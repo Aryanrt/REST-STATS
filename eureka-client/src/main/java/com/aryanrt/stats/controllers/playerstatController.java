@@ -36,7 +36,7 @@ public class playerstatController {
 
 	  // Aggregate root
 
-	  @GetMapping("/playerstats")
+	  @GetMapping(value="/playerstats",produces="application/json")
 	  JsonObject all(HttpServletRequest request) 
 	  {
 		//This looks not necessary
@@ -44,7 +44,7 @@ public class playerstatController {
 	  }
 
 
-	  @GetMapping("/playerstats/{playerID}/{gameID}")
+	  @GetMapping(value="/playerstats/{playerID}/{gameID}", produces="application/json")
 	  public JsonObject one(@PathVariable int playerID, @PathVariable int gameID, HttpServletRequest request) {
 
 		  Player player = playerRepository.findByPlayerID(playerID);

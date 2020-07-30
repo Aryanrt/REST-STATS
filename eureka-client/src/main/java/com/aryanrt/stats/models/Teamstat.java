@@ -10,9 +10,9 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="teamstats")
-@NamedQuery(name="Teamstats.findAll", query="SELECT t FROM Teamstats t")
-public class Teamstats implements Serializable {
+@Table(name="teamstat")
+@NamedQuery(name="Teamstat.findAll", query="SELECT t FROM Teamstat t")
+public class Teamstat implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
@@ -81,7 +81,7 @@ public class Teamstats implements Serializable {
 
 
 	
-	public Teamstats() {
+	public Teamstat() {
 	}
 	
 	public TeamstatsPK getId() {

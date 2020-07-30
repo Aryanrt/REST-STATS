@@ -1,3 +1,4 @@
+
 package com.aryanrt.stats.controllers;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class TeamController {
 	@Autowired
 	private PlayerRepository playerRepository;
 
-	  @GetMapping("/teams")
+	  @GetMapping(value="/teams",produces="application/json")
 	  public JsonObject all(HttpServletRequest request)
 	  {
 		  List<Game> games = ((List<Game>) gameRepository.findAll());
@@ -91,7 +92,7 @@ public class TeamController {
 	    return result;
 	  }
 
-	  @GetMapping("/teams/{abbriviation}")
+	  @GetMapping(value="/teams/{abbriviation}",produces="application/json")
 	  public JsonObject one(@PathVariable String abbriviation, HttpServletRequest request) {
 
 		  List<Game> games = ((List<Game>) gameRepository.findAll());

@@ -13,7 +13,7 @@ public class PlayerPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name="team")
+	@JoinColumn(name="teamID")
 	private Team team;
 
 	@Column(name="FIRSTNAME")

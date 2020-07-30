@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aryanrt.stats.models.Game;
 import com.aryanrt.stats.models.Matchup;
 import com.aryanrt.stats.models.Player;
-import com.aryanrt.stats.models.Teamstats;
+import com.aryanrt.stats.models.Teamstat;
 import com.aryanrt.stats.models.TeamstatsPK;
 import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.MatchupRepository;
 import com.aryanrt.stats.repositories.PlayerRepository;
 import com.aryanrt.stats.repositories.PlayerstatRepository;
-import com.aryanrt.stats.repositories.TeamstatsRepository;
+import com.aryanrt.stats.repositories.TeamstatRepository;
 import com.google.gson.JsonObject;
 
 @RestController
@@ -31,14 +31,14 @@ public class GameController {
 	private GameRepository gameRepository;
 	
 	@Autowired
-	private TeamstatsRepository teamstatsRepository;
+	private TeamstatRepository teamstatsRepository;
 	
 	@Autowired
 	private PlayerRepository playerRepository;
 	@Autowired
 	private PlayerstatRepository playerstatRepository;
 
-	  @GetMapping("/games")
+	  @GetMapping(value="/games",produces="application/json")
 	  public JsonObject all(HttpServletRequest request)
 	  {
 		  List<Game> games = ((List<Game>) gameRepository.findAll());
@@ -72,7 +72,7 @@ public class GameController {
 		  return result;
 	  }
 
-	  @GetMapping("/games/{id}")
+	  @GetMapping(value="/games/{id}",produces="application/json")
 	  public JsonObject one(@PathVariable int id, HttpServletRequest request) {
 
 		//  List<Game> games = ((List<Game>) gameRepository.findAll());

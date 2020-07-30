@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aryanrt.stats.models.Game;
 import com.aryanrt.stats.models.Matchup;
 import com.aryanrt.stats.models.Team;
-import com.aryanrt.stats.models.Teamstats;
+import com.aryanrt.stats.models.Teamstat;
 import com.aryanrt.stats.models.TeamstatsPK;
 import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.MatchupRepository;
 import com.aryanrt.stats.repositories.TeamRepository;
-import com.aryanrt.stats.repositories.TeamstatsRepository;
+import com.aryanrt.stats.repositories.TeamstatRepository;
 import com.google.gson.JsonObject;
 
 @RestController
-public class TeamstatsController {
+public class TeamstatController {
 
 	@Autowired
-	private TeamstatsRepository teamstatsRepository;
+	private TeamstatRepository teamstatsRepository;
 
 	@Autowired
 	private GameRepository gameRepository;
@@ -35,14 +35,14 @@ public class TeamstatsController {
 
 	// Aggregate root
 
-	  @GetMapping("/teamstats")
+	  @GetMapping(value="/teamstats",produces="application/json")
 	  public JsonObject all(HttpServletRequest request)
 	  {
 		 //This looks super necessary
 	    return null;
 	  }
 
-	@GetMapping("/teamstats/{teamID}/{gameID}")
+	@GetMapping(value="/teamstats/{teamID}/{gameID}",produces="application/json")
 	public JsonObject one(@PathVariable String teamID, @PathVariable String gameID, HttpServletRequest request) {
 
 		String baseURL = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
@@ -50,8 +50,8 @@ public class TeamstatsController {
 		Game game = gameRepository.findByGameID(Integer.parseInt(gameID));
 		Team team2 = game.getId().getMatchupID().getTeam1() != team ? game.getId().getMatchupID().getTeam1() :game.getId().getMatchupID().getTeam2();
 		String date = game.getId().getDate();
-		Teamstats teamstat = teamstatsRepository.findById(new TeamstatsPK(Integer.parseInt(gameID),team)).orElse(null);
-		Teamstats team2stat = teamstatsRepository.findById(new TeamstatsPK(Integer.parseInt(gameID),team2)).orElse(null);
+		Teamstat teamstat = teamstatsRepository.findById(new TeamstatsPK(Integer.parseInt(gameID),team)).orElse(null);
+		Teamstat team2stat = teamstatsRepository.findById(new TeamstatsPK(Integer.parseInt(gameID),team2)).orElse(null);
 		
 		JsonObject result = new JsonObject();
 		result.addProperty("team1", team.getAbbriviation());
