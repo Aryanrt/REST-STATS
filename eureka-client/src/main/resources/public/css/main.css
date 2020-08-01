@@ -321,6 +321,21 @@ iframe {
   text-align: center;
  
 }
+.label-checkbox100{
+  font-family: Poppins-Regular;
+  font-size: 14px;
+  color: #555555;
+  margin: 1%;
+  padding:1%;
+  background-color: #e6e6e6; 
+  line-height: 2.5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  border-radius: 100px;
+  float: left;
+  
+}
 .input-radio100 {
 	background: #151515;	
   display: table-cell;  
@@ -336,6 +351,8 @@ iframe {
   
 
 }
+
+
 
 @import url(https://fonts.googleapis.com/css?family=Cabin:400);
 

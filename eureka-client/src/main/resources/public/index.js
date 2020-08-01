@@ -32,16 +32,28 @@ function teamSelector(){
 function allTeams(){
   document.getElementById("all-teams").click();
   document.getElementById("teams-lable").style.visibility="hidden";
+  document.getElementById("teams-div").style.visibility="hidden";
+  document.getElementById("teams").textContent = "All teams";
+
 }
 function mutiTeams(){
 	document.getElementById("mutli-teams").click();
 	document.getElementById("teams-lable").style.visibility="visible";
+	document.getElementById("teams-div").style.visibility="visible";
 }
 
 function toDate(id)
 {
-		document.getElementById(id).type="date";
-		
+	document.getElementById(id).type="date";		
+}
+function selectTeam(id)
+{
+
+	if(!  document.getElementById(id).getElementsByTagName("input")[0].checked )
+		document.getElementById(id).style.backgroundColor = "#e6e6e6";
+	else
+		document.getElementById(id).style.backgroundColor = "#00ad5f";
+	document.getElementById(id).getElementsByTagName("input")[0].click();
 }
 
 
