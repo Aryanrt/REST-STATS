@@ -372,6 +372,31 @@ iframe {
 	color: #efe;
 	outline: none;
 }
+ div[val="set"]{
+	animation: glow 800ms ease-out infinite alternate;
+	background: #222922;
+	background: linear-gradient(#333933, #222922);
+	border-color: #393;
+	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+	color: #efe;
+	outline: none;
+
+	
+} 
+
+ div[val="unset"]{
+	color: #efe;
+	animation-play-state: paused;
+} 
+.webdesigntuts-workshop input:checked {
+	animation: glow 800ms ease-out infinite alternate;
+	background: #222922;
+	background: linear-gradient(#333933, #222922);
+	border-color: #393;
+	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+	color: #efe;
+	outline: none;
+}
 .box1{
 	width: 50%;
   display: table;

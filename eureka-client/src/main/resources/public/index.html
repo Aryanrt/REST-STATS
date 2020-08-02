@@ -48,39 +48,36 @@
 					
 				</div>
 				 ----- -->
-				<label class="label-input100" for="dates">Choose Date or Date Range *</label>
-				
-				
-				<div class="wrap-input100 box1" onclick="myFunction()">
+				 
+				 <!-- one or multiple dates? -->
+				<label class="label-input100" for="dates">Choose Date or Date Range *</label>				
+				<div id="d1" class="wrap-input100 box1" val="set" onclick="myFunction()">
 					<label class="label-radio100" for="first-name"><span>1 Date</span></label>
 					<input id="signle-date" class="input-radio100" type="radio" name="dates" placeholder="1 Date" checked>
 				</div>
 				
 				
-				<div class="wrap-input100 rs2-wrap-input100 validate-input" onclick="myFunction2()">
-					
+				<div id="d2" class="wrap-input100 box1" val="" onclick="myFunction2()">					
 					<label class="label-radio100" for="first-name"><span>Multiple Dates</span></label>
-					<input id="mutli-dates" class="input-radio100" type="radio" name="dates" placeholder="Date Ranges">
-					
+					<input id="mutli-dates" class="input-radio100" type="radio" name="dates" placeholder="Date Ranges">					
 				</div>
-				
+				<!------------------------------------->
+				<!-- what date -->
 				<label class="label-input100" id="v1-lable" >Choose The Date</label>
-				<div class="wrap-input100" id="v1-div">
-					<input id="date" class="input-radio100" type="date" name="email"style="width:100%">					
+				<div class="wrap-input100 box1" id="v1-div" val=""  style="width:100%" onchange="evalHightlight(this)">
+					<input id="date" class="input-radio100" type="date" name="email" style="width:100%" >					
 				</div>
-				<label class="label-input100" id="v2-lable" style="display:none">Choose The Date Range</label>
-				<div class="wrap-input100" id="v2-div" style="display:none" >
-					<input id="dates-from" class="input-radio100" type="text" name="email" placeholder="From" onClick="toDate(this.id)"><!-- 
-					 --><input id="dates-to" class="input-radio100" type="text" name="email" placeholder="To" onClick="toDate(this.id)">
-				</div>
-<!-- ---- 
-				<label class="label-input100" for="phone">Enter phone number</label>
-				<div class="wrap-input100">
-					<input id="phone" class="input100" type="text" name="phone" placeholder="Eg. +1 800 000000">
-					<span class="focus-input100"></span>
-				</div>
-				---- -->
 				
+				<label class="label-input100" id="v2-lable" style="display:none">Choose The Date Range</label>
+				<div class="wrap-input100"  id="v2-div1" style="display:none;width: 50%"  onchange="evalHightlight(this)">
+					<input id="dates-from" class="input-radio100" type="date" name="email" placeholder="From" style="width: 100%" >
+				</div>
+				<div class="wrap-input100" id="v2-div2" style="display:none;width: 50%" onchange="evalHightlight(this)">
+					 <input id="dates-to" class="input-radio100" type="date" name="email" placeholder="To" onClick="toDate(this.id)" style="width: 100%">
+				</div>
+				<!------------------------------------->
+				<!-- all teams or not? -->
+
 				<label class="label-input100">Choose the team(s)</label>
 				<div class="wrap-input100 box1"   onclick="allTeams()">
 					<label class="label-radio100" for="first-name"><span>All Teams</span></label>
@@ -90,11 +87,12 @@
 					<label class="label-radio100" for="first-name"><span>Specific Teams</span></label>
 					<input id="mutli-teams" class="input-radio100" type="radio" name="teams" autocomplete="off">					
 				</div>
-				
+				<!------------------------------------->
+				<!-- what teams -->
 				<label class="label-input100" id="teams-lable" style="visibility: hidden">Choose The Teams</label>
 				<div class="wrap-input100" id="teams-div" style="visibility: hidden">
 					<label id="team1" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
-					<input id="team1-checkbox" type="checkbox" style="display: none" onclick="showTeams(this.id)">ATL</label>	
+					<input id="team1-checkbox" type="checkbox" style="display: none" onclick="">ATL</label>	
 					<label id="team2" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
 					<input id="team2-checkbox" type="checkbox" style="display: none">BKN</label>	
 					<label id="team3" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
