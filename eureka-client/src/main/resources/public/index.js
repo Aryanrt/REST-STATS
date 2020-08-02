@@ -40,6 +40,7 @@ function mutiTeams(){
 	document.getElementById("mutli-teams").click();
 	document.getElementById("teams-lable").style.visibility="visible";
 	document.getElementById("teams-div").style.visibility="visible";
+	document.getElementById("teams").textContent = "";
 }
 
 function toDate(id)
@@ -49,11 +50,57 @@ function toDate(id)
 function selectTeam(id)
 {
 
-	if(!  document.getElementById(id).getElementsByTagName("input")[0].checked )
+	if( document.getElementById(id).getElementsByTagName("input")[0].checked )
+	{
 		document.getElementById(id).style.backgroundColor = "#e6e6e6";
+		
+		var children = document.getElementById("teams").children;
+		for(i=0; i< children.length;i++)
+		{
+			if(children[i].id == "view"+id)
+			{
+				document.getElementById("teams").removeChild(children[i]);
+				break;
+			}
+		}
+		document.getElementById(id).getElementsByTagName("input")[0].checked=false;
+	}
 	else
+	{
 		document.getElementById(id).style.backgroundColor = "#00ad5f";
-	document.getElementById(id).getElementsByTagName("input")[0].click();
-}
 
+		var temp = document.createElement("lable");
+		temp.id = "view"+id;
+		temp.className="label-checkbox100";
+		temp.style.backgroundColor="#00ad5f";
+		temp.textContent=document.getElementById(id).textContent;
+		document.getElementById("teams").appendChild(temp);
+		document.getElementById(id).getElementsByTagName("input")[0].checked=true;
+	}
+		
+}
+function showTeams(id)
+{
+	if(  document.getElementById(id).checked )
+	{
+		var temp = document.createElement("lable");
+		temp.id = "view"+id;
+		temp.textContent=document.getElementById(id).textContent;
+		document.getElementById("teams").appendChild(temp);
+		alert(3);
+	}
+	else
+	{
+		var children = document.getElementById("teams").children;
+		for(i=0; i< children.length;i++)
+		{
+			if(children[i].id == "view"+id)
+			{
+				document.getElementById("teams").removeChild(children[i]);
+				break;
+			}
+		}
+		alert(4);
+	}	
+}
 
