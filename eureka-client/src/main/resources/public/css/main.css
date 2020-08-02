@@ -178,7 +178,7 @@ iframe {
 
 .container-contact100 {
   width: 100%;  
-  min-height: 100vh;
+  height:100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -187,13 +187,13 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15px;
   background: #f2f2f2;
   
 }
 
 .wrap-contact100 {
-  width: 1120px;
+  width: 100%;
+  height:100%;
   background: #fff;
   overflow: hidden;
   display: -webkit-box;
@@ -203,14 +203,14 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  flex-direction: row-reverse;
+  flex-direction: row;
 
 }
 
 /*==================================================================
 [ Contact more ]*/
 .contact100-more {
-  width: 50%;
+  width: 10%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -238,7 +238,7 @@ iframe {
 
 .contact100-form {
 	background: #151515;	
-  width: 50%;
+  width: 80%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -246,6 +246,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   padding: 56px 55px 63px 55px;
+  
 }
 
 .contact100-form-title {
@@ -253,10 +254,10 @@ iframe {
   display: block;
   font-family: Poppins-Regular;
   font-size: 30px;
-  color: #333333;
-  line-height: 1.2;
+  color: white;
+
   text-align: center;
-  padding-bottom: 33px;
+  padding-bottom: 3%;
 }
 
 
@@ -286,11 +287,10 @@ iframe {
 
 .label-input100 {
   font-family: Poppins-Regular;
-  font-size: 12px;
-  color: #555555;
-  line-height: 1.5;
+  font-size: 14px;
+  color: #00ad5f;
   text-transform: uppercase;
-  letter-spacing: 1px;
+
   
   display: -webkit-box;
   display: -webkit-flex;
@@ -303,8 +303,7 @@ iframe {
   border: 1px solid #e6e6e6;
   border-bottom: none; 
   padding: 10px 25px;
-  margin-top: 15px;
-  margin-bottom: 0;
+
 }
 /*---------------------------------------------*/
 
@@ -314,17 +313,18 @@ iframe {
 	width:50%;
   font-family: Poppins-Regular;
   font-size: 12px;
-  color: #555555;
+  color: white;
   line-height: 2.5;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
+  
  
 }
 .label-checkbox100{
   font-family: Poppins-Regular;
   font-size: 14px;
-  color: #555555;
+  
   margin: 1%;
   padding:1%;
   background-color: #e6e6e6; 
@@ -342,17 +342,17 @@ iframe {
   width:50%;
   font-family: Poppins-Regular;
   font-size: 12px;
-  color: #555555;
+  color: white;
   line-height: 2.5;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
-  border: 1px solid #e6e6e6;
+ 
+  border-bottom: none; 
   
-
+  background: #222922;
+ 
 }
-
-
 
 @import url(https://fonts.googleapis.com/css?family=Cabin:400);
 
@@ -361,9 +361,7 @@ iframe {
 
 }
 
-
-
-.webdesigntuts-workshop input:focus {
+/* .webdesigntuts-workshop input:focus {
 	animation: glow 800ms ease-out infinite alternate;
 	background: #222922;
 	background: linear-gradient(#333933, #222922);
@@ -371,23 +369,54 @@ iframe {
 	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
 	color: #efe;
 	outline: none;
-}
+} */
+button, button:focus{
+	animation: glow 800ms ease-out infinite alternate;
+	background: #222922;
+	background: linear-gradient(#333933, #222922);
+	border-color: #393;
+	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+	color: #efe;
+	outline: none;
+} 
  div[val="set"]{
 	animation: glow 800ms ease-out infinite alternate;
 	background: #222922;
+	border-color: #393;
+	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+	color: #efe;
+	outline: none;	
+	
+} 
+div[val="unset"]{
+	color: #efe;
+	animation-play-state: paused;
+	
+} 
+ div[val="error"]{
+	animation: error-glow 800ms ease-out infinite alternate;
+	background: #222922;
+	border-color: #402a2a;
+	box-shadow:  0 0 5px  rgba(225,0,0,.2), inset 0 0 5px rgba(225,0,0,.1),0 2px 0 #000;
+	color: #efe;
+	outline: none;	
+	
+} 
+
+label[val="set"]{
+	animation: glow 800ms ease-out infinite alternate;
+	background: #402a2a;
 	background: linear-gradient(#333933, #222922);
 	border-color: #393;
 	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
 	color: #efe;
-	outline: none;
-
+	outline: none;	
 	
 } 
-
- div[val="unset"]{
-	color: #efe;
+label[val="unset"]{
 	animation-play-state: paused;
 } 
+
 .webdesigntuts-workshop input:checked {
 	animation: glow 800ms ease-out infinite alternate;
 	background: #222922;
@@ -469,6 +498,16 @@ iframe {
 		box-shadow: 0 0 20px rgba(0,255,0,.6), inset 0 0 10px rgba(0,255,0,.4), 0 2px 0 #000;
     }
 }
+@keyframes error-glow {
+   0% {
+		border-color: #8c0101;
+		box-shadow:  0 0 5px  rgba(225,0,0,.2), inset 0 0 5px rgba(225,0,0,.1),0 2px 0 #000;
+    }	
+    100% {
+		border-color: #f70202;
+		box-shadow:  0 0 20px  rgba(225,0,0,.9), inset 0 0 20px rgba(225,0,0,.4),0 2px 0 #000;
+    }
+}
 
 /*---------------------------------------------*/
 .input100 {
@@ -522,11 +561,11 @@ textarea.input100 {
   min-width: 200px;
   height: 50px;
   border-radius: 2px;
-  background: #00ad5f;
+  color: #00ad5f;
+  background: #222922;
 
   font-family: Montserrat-Bold;
   font-size: 12px;
-  color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;

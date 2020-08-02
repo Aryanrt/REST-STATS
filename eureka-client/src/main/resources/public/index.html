@@ -32,10 +32,12 @@
 <div class="webdesigntuts-workshop">
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-		
-			<form class="contact100-form validate-form">
+			<div class="contact100-more flex-col-c-m" style="background-image: url('images/bg-01.jpg');"> 
+				<span style="writing-mode: vertical-rl; text-orientation: upright; color:white; font-size:50px; "> Some Ads</span>
+			</div>
+			<form class="contact100-form  ">
 				<span class="contact100-form-title">
-					Send Us A Message
+					Download NBA Statistics
 				</span>
 <!--
 				<label class="label-input100" for="first-name">Tell us your name *</label>
@@ -68,22 +70,23 @@
 					<input id="date" class="input-radio100" type="date" name="email" style="width:100%" >					
 				</div>
 				
-				<label class="label-input100" id="v2-lable" style="display:none">Choose The Date Range</label>
-				<div class="wrap-input100"  id="v2-div1" style="display:none;width: 50%"  onchange="evalHightlight(this)">
+				<label class="label-input100" id="v2-lable" style="display:none">Choose The Date Range
+				<span id="error-msg" style="visibility: hidden; color:red;"></span></label>
+				<div class="wrap-input100"  id="v2-div1" style="display:none;width: 50%"  onchange="evalDate(this)">
 					<input id="dates-from" class="input-radio100" type="date" name="email" placeholder="From" style="width: 100%" >
 				</div>
-				<div class="wrap-input100" id="v2-div2" style="display:none;width: 50%" onchange="evalHightlight(this)">
+				<div class="wrap-input100" id="v2-div2" style="display:none;width: 50%" onchange="evalDate(this)">
 					 <input id="dates-to" class="input-radio100" type="date" name="email" placeholder="To" onClick="toDate(this.id)" style="width: 100%">
 				</div>
 				<!------------------------------------->
 				<!-- all teams or not? -->
 
 				<label class="label-input100">Choose the team(s)</label>
-				<div class="wrap-input100 box1"   onclick="allTeams()">
-					<label class="label-radio100" for="first-name"><span>All Teams</span></label>
+				<div id="div3" class="wrap-input100 box1" val="set"  onclick="allTeams()">
+					<label class="label-radio100"  for="first-name"><span>All Teams</span></label>
 					<input id="all-teams" class="input-radio100" type="radio" name="teams">
 				</div>					
-				<div class="wrap-input100 box1"  onclick="mutiTeams()">					
+				<div id="div4" class="wrap-input100 box1" val="" onclick="mutiTeams()">					
 					<label class="label-radio100" for="first-name"><span>Specific Teams</span></label>
 					<input id="mutli-teams" class="input-radio100" type="radio" name="teams" autocomplete="off">					
 				</div>
@@ -91,65 +94,65 @@
 				<!-- what teams -->
 				<label class="label-input100" id="teams-lable" style="visibility: hidden">Choose The Teams</label>
 				<div class="wrap-input100" id="teams-div" style="visibility: hidden">
-					<label id="team1" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team1" class="label-checkbox100" for="teams" onclick="selectTeam(this)"  val="" >
 					<input id="team1-checkbox" type="checkbox" style="display: none" onclick="">ATL</label>	
-					<label id="team2" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team2" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team2-checkbox" type="checkbox" style="display: none">BKN</label>	
-					<label id="team3" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team3" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team3-checkbox" type="checkbox" name="email" style="display: none">BOS</label>	
-					<label id="team4" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team4" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team4-checkbox" type="checkbox" name="email" style="display: none">CHA</label>	
-					<label id="team5" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team5" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team5-checkbox" type="checkbox" name="email" style="display: none">CHI</label>	
-					<label id="team6" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team6" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team6-checkbox" type="checkbox" name="email" style="display: none">CLE</label>	
-					<label id="team7" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team7" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team7-checkbox" type="checkbox" name="email" style="display: none">DAL</label>	
-					<label id="team8" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team8" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team8-checkbox" type="checkbox" name="email" style="display: none">DEN</label>	
-					<label id="team9" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team9" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team9-checkbox" type="checkbox" name="email" style="display: none">DET</label>	
-					<label id="team10" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team10" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team10-checkbox" type="checkbox" name="email" style="display: none">GSW</label>	
-					<label id="team11" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team11" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team11-checkbox" type="checkbox" name="email" style="display: none">HOU</label>	
-					<label id="team12" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team12" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team12-checkbox" type="checkbox" name="email" style="display: none">IND</label>	
-					<label id="team13" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team13" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team13-checkbox" type="checkbox" name="email" style="display: none">LAC</label>	
-					<label id="team14" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team14" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team14-checkbox" type="checkbox" name="email" style="display: none">LAL</label>	
-					<label id="team15" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team15" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team15-checkbox" type="checkbox" name="email" style="display: none">MEM</label>	
-					<label id="team16" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team16" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team16-checkbox" type="checkbox" name="email" style="display: none">MIA</label>	
-					<label id="team17" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team17" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team17-checkbox" type="checkbox" name="email" style="display: none">MIL</label>	
-					<label id="team18" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team18" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team18-checkbox" type="checkbox" name="email" style="display: none">MIN</label>	
-					<label id="team19" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team19" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team19-checkbox" type="checkbox" name="email" style="display: none">NOP</label>	
-					<label id="team20" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team20" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team20-checkbox" type="checkbox" name="email" style="display: none">NYK</label>	
-					<label id="team21" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team21" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team21-checkbox" type="checkbox" name="email" style="display: none">OKC</label>	
-					<label id="team22" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team22" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team22-checkbox" type="checkbox" name="email" style="display: none">ORL</label>	
-					<label id="team23" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team23" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team23-checkbox" type="checkbox" name="email" style="display: none">PHI</label>	
-					<label id="team24" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team24" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team24-checkbox" type="checkbox" name="email" style="display: none">PHX</label>	
-					<label id="team25" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team25" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team25-checkbox" type="checkbox" name="email" style="display: none">POR</label>	
-					<label id="team26" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team26" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team26-checkbox" type="checkbox" name="email" style="display: none">SAC</label>	
-					<label id="team27" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team27" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team27-checkbox" type="checkbox" name="email" style="display: none">SAS</label>	
-					<label id="team28" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team28" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team28-checkbox" type="checkbox" name="email" style="display: none">TOR</label>	
-					<label id="team29" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team29" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team29-checkbox" type="checkbox" name="email" style="display: none">UTA</label>	
-					<label id="team30" class="label-checkbox100" for="teams" onclick="selectTeam(this.id)" >
+					<label id="team30" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
 					<input id="team30-checkbox" type="checkbox" name="email" style="display: none">WSH</label>	
 					
 					
@@ -157,14 +160,15 @@
 					
 				</div>				
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
-						Send Message
+					<button id="submit-button" class="contact100-form-btn">
+						Download
 					</button>
 				</div>
 			</form>
-
+ 
 			<div class="contact100-more flex-col-c-m" style="background-image: url('images/bg-01.jpg');">
-				<div class="flex-w size1 p-b-47">
+				<span style="writing-mode: vertical-rl; text-orientation: upright; color:white; font-size:50px; "> Some Ads</span>
+				<!-- <div class="flex-w size1 p-b-47">
 					<div class="txt1 p-r-25">
 						<span class="lnr lnr-map-marker"></span>
 					</div>
@@ -211,7 +215,7 @@
 						</span>
 					</div>
 				</div>
-			</div>
+ -->			</div>
 		</div>
 	</div>
 
@@ -249,6 +253,11 @@
 	  gtag('js', new Date());
 
 	  gtag('config', 'UA-23581568-13');
+	 /*  <!----> 
+	  $(document).ready(function(){
+		  $('[data-toggle="tooltip"]').tooltip();
+		});
+	  */
 	</script>
 </body>
 </html>
