@@ -39,6 +39,7 @@ function allTeams(){
   document.getElementById("all-teams").checked=true;
   document.getElementById("teams-lable").style.visibility="hidden";
   document.getElementById("teams-div").style.visibility="hidden";
+  document.getElementById("submit-button").setAttribute("val","all");
 
   unsetHighlight(document.getElementById("div4"));
   setHighlight(document.getElementById("div3"));
@@ -48,11 +49,13 @@ function mutiTeams(){
 	document.getElementById("mutli-teams").checked = true;
 	document.getElementById("teams-lable").style.visibility="visible";
 	document.getElementById("teams-div").style.visibility="visible";
-
+	document.getElementById("submit-button").setAttribute("val","multi");
+	//sleep();
+	
 	unsetHighlight(document.getElementById("div3"));
     setHighlight(document.getElementById("div4"));
 }
-
+	
 function toDate(id)
 {
 	//document.getElementById(id).type="date";		

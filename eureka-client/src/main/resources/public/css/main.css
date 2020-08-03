@@ -299,10 +299,10 @@ iframe {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 55px;
+
   border: 1px solid #e6e6e6;
   border-bottom: none; 
-  padding: 10px 25px;
+  padding: 0px 20px;
 
 }
 /*---------------------------------------------*/
@@ -358,6 +358,7 @@ iframe {
 
 .webdesigntuts-workshop {
 	background: #151515;
+	height: 100%;
 
 }
 
@@ -370,7 +371,17 @@ iframe {
 	color: #efe;
 	outline: none;
 } */
-button, button:focus{
+button[val="all"] {
+  animation: MoveUp 1s 1 linear;
+  animation-fill-mode: forwards;
+  
+}
+button[val="multi"] {
+  animation: MoveDown 1s 1 linear;
+  animation-fill-mode: forwards;
+}
+
+/* button, button:focus{
 	animation: glow 800ms ease-out infinite alternate;
 	background: #222922;
 	background: linear-gradient(#333933, #222922);
@@ -378,7 +389,7 @@ button, button:focus{
 	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
 	color: #efe;
 	outline: none;
-} 
+}  */
  div[val="set"]{
 	animation: glow 800ms ease-out infinite alternate;
 	background: #222922;
@@ -509,6 +520,14 @@ label[val="unset"]{
     }
 }
 
+@keyframes MoveUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-80%); }
+}
+@keyframes MoveDown {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50%); }
+}
 /*---------------------------------------------*/
 .input100 {
   display: block;
