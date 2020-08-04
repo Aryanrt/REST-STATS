@@ -222,7 +222,7 @@ iframe {
   padding: 30px 15px 0px 15px;
 }
 
-.contact100-more::before {
+/* .contact100-more::before {
   content: "";
   display: block;
   position: absolute;
@@ -234,7 +234,7 @@ iframe {
   background: rgba(0,0,0,0.8);
 }
 
-
+ */
 
 /*==================================================================
 [ Form ]*/
@@ -255,7 +255,7 @@ iframe {
 
 .contact100-form-title {
   width: 100%;
-  display: block;
+ /*  display: block; */
   font-family: Poppins-Regular;
   font-size: 30px;
   color: white;
@@ -294,7 +294,7 @@ iframe {
   font-size: 14px;
   color: #00ad5f;
   text-transform: uppercase;
-
+  align-items: center;
   
   display: -webkit-box;
   display: -webkit-flex;
@@ -533,7 +533,7 @@ label[val="unset"]{
 }
 /*---------------------------------------------*/
 .input100 {
-  display: block;
+ /*  display: block; */
   width: 50%;
   background: transparent;
   font-family: Poppins-Regular;
@@ -650,62 +650,6 @@ textarea.input100 {
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 
-.validate-input {
-  position: relative;
-}
-
-.alert-validate::before {
-  content: attr(data-validate);
-  position: absolute;
-  max-width: 70%;
-  background-color: #fff;
-  border: 1px solid #c80000;
-  border-radius: 2px;
-  padding: 4px 25px 4px 10px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 2px;
-  pointer-events: none;
-
-  font-family: Poppins-Regular;
-  color: #c80000;
-  font-size: 13px;
-  line-height: 1.4;
-  text-align: left;
-
-  visibility: hidden;
-  opacity: 0;
-
-  -webkit-transition: opacity 0.4s;
-  -o-transition: opacity 0.4s;
-  -moz-transition: opacity 0.4s;
-  transition: opacity 0.4s;
-}
-
-.alert-validate::after {
-  content: "\f12a";
-  font-family: FontAwesome;
-  display: block;
-  position: absolute;
-  color: #c80000;
-  font-size: 16px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 8px;
-}
-
-.alert-validate:hover:before {
-  visibility: visible;
-  opacity: 1;
-}
 
 @media (max-width: 992px) {
   .alert-validate::before {

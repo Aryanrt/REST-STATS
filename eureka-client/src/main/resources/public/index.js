@@ -25,8 +25,8 @@ function myFunction() {
   document.getElementById("v2-div1").style.display="none";
   document.getElementById("v2-div2").style.display="none";
 
-  document.getElementById("v1-lable").style.display="block";
-  document.getElementById("v1-div").style.display="table-cell";
+  document.getElementById("v1-lable").style.display="flex";
+  document.getElementById("v1-div").style.display="table";
 
 
   unsetHighlight(document.getElementById("d2"));
@@ -43,9 +43,9 @@ function myFunction2() {
   document.getElementById("v1-lable").style.display="none";
   document.getElementById("v1-div").style.display="none";
 
-  document.getElementById("v2-lable").style.display="block";
-  document.getElementById("v2-div1").style.display="table-cell";
-  document.getElementById("v2-div2").style.display="table-cell";
+  document.getElementById("v2-lable").style.display="flex";
+  document.getElementById("v2-div1").style.display="table";
+  document.getElementById("v2-div2").style.display="table";
 
 
 
@@ -54,11 +54,7 @@ function myFunction2() {
  document.getElementById("mutli-dates").checked= true;
 } 
 
-function teamSelector(){
-  document.getElementById("teams-lable").style.display="block";
-  document.getElementById("teams-div").style.display="block";
-  document.getElementById("multi-teams").click;
-}
+
 function allTeams(){
 
 	document.getElementById("all-teams").checked=true;
