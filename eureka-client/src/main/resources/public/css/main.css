@@ -176,7 +176,9 @@ iframe {
 
 /*//////////////////////////////////////////////////////////////////
 [ Contact ]*/
-
+#teams-div{
+	height:auto;
+}
 .container-contact100 {
   width: 100%;  
   height:100%;
@@ -246,7 +248,7 @@ iframe {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-  padding: 56px 55px 63px 55px;
+  padding: 0px 55px 63px 55px;
   
 }
 
@@ -258,7 +260,7 @@ iframe {
   color: white;
 
   text-align: center;
-  padding-bottom: 3%;
+  padding-bottom: 1%;
 }
 
 
@@ -372,7 +374,7 @@ iframe {
 	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
 	color: #efe;
 	outline: none;
-} */
+} 
 button[val="all"] {
   animation: MoveUp 1s 1 linear;
   animation-fill-mode: forwards;
@@ -381,7 +383,7 @@ button[val="all"] {
 button[val="multi"] {
   animation: MoveDown 1s 1 linear;
   animation-fill-mode: forwards;
-}
+}*/
 
 /* button, button:focus{
 	animation: glow 800ms ease-out infinite alternate;
@@ -521,12 +523,12 @@ label[val="unset"]{
 }
 
 @keyframes MoveUp {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-80%); }
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
 }
 @keyframes MoveDown {
     0% { transform: translateY(0); }
-    100% { transform: translateY(50%); }
+    100% { transform: translateY(100%); }
 }
 /*---------------------------------------------*/
 .input100 {
@@ -557,6 +559,7 @@ textarea.input100 {
 /*------------------------------------------------------------------
 [ Button ]*/
 .container-contact100-form-btn {
+  height:40%;
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -565,7 +568,7 @@ textarea.input100 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 23px;
+
 }
 
 .contact100-form-btn {
@@ -582,7 +585,6 @@ textarea.input100 {
   border-radius: 2px;
   color: #00ad5f;
   background: #222922;
-
   font-family: Montserrat-Bold;
   font-size: 12px;
   line-height: 1.2;

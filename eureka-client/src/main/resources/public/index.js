@@ -1,3 +1,24 @@
+
+function init()
+{
+	var animation = document.getElementById("submit-container");
+	animation.addEventListener("webkitAnimationEnd", animeDone);
+	animation.addEventListener("animationend", animeDone);
+}
+
+function animeDone()
+{
+	var animation = document.getElementById("submit-container");
+	if(! document.getElementById("all-teams").checked)
+	{
+		document.getElementsByClassName("container-contact100-form-btn")[0].style.height="10%";
+		
+		document.getElementById("teams-lable").style.visibility="visible";
+		document.getElementById("teams-div").style.display="block";
+	}
+
+}
+
 function myFunction() {
   // Get the checkbox
   document.getElementById("v2-lable").style.display="none";
@@ -39,21 +60,36 @@ function teamSelector(){
   document.getElementById("multi-teams").click;
 }
 function allTeams(){
-  document.getElementById("all-teams").checked=true;
-  document.getElementById("teams-lable").style.visibility="hidden";
-  document.getElementById("teams-div").style.visibility="hidden";
-  document.getElementById("submit-button").setAttribute("val","all");
 
-  unsetHighlight(document.getElementById("div4"));
-  setHighlight(document.getElementById("div3"));
+	document.getElementById("all-teams").checked=true;
+	var animation = document.getElementById("submit-container");
+	
+    document.getElementById("teams-lable").style.visibility="hidden";
+ 
+	//document.getElementsByClassName("container-contact100-form-btn")[0].style.height="40%";
+	document.getElementById("teams-div").style.display="none";
+	animation.style.height="40%";
+
+	
+	
+
+	animation.style.WebkitAnimation = "MoveUp 1s 1 ease-out forwards "; // Code for Chrome, Safari and Opera
+	animation.style.animation = "MoveUp 1s 1 ease-out forwards";     // Standard syntax
+
+	unsetHighlight(document.getElementById("div4"));
+	setHighlight(document.getElementById("div3"));
 
 }
 function mutiTeams(){
 	document.getElementById("mutli-teams").checked = true;
-	document.getElementById("teams-lable").style.visibility="visible";
-	document.getElementById("teams-div").style.visibility="visible";
-	document.getElementById("submit-button").setAttribute("val","multi");
-	//sleep();
+
+	//document.getElementById("submit-button").setAttribute("val","multi");
+	
+
+	var animation = document.getElementById("submit-container");
+	animation.style.WebkitAnimation = "MoveDown 1s 1 ease-out forwards"; // Code for Chrome, Safari and Opera
+	animation.style.animation = "MoveDown 1s 1 ease-out forwards";     // Standard syntax
+	
 	
 	unsetHighlight(document.getElementById("div3"));
     setHighlight(document.getElementById("div4"));
