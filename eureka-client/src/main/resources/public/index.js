@@ -32,6 +32,7 @@ function myFunction() {
   unsetHighlight(document.getElementById("d2"));
   setHighlight(document.getElementById("d1"));
   document.getElementById("signle-date").checked=true;
+  document.getElementById("mutli-dates").checked= false;
 
 
 
@@ -52,6 +53,7 @@ function myFunction2() {
  unsetHighlight(document.getElementById("d1"));
  setHighlight(document.getElementById("d2"));
  document.getElementById("mutli-dates").checked= true;
+ document.getElementById("signle-date").checked=false;
 } 
 
 

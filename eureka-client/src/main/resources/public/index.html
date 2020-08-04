@@ -19,7 +19,7 @@
 			<!-- <div class="contact100-more" style="background-image: url('images/bg-01.jpg');"> 
 				<span style="writing-mode: vertical-rl; text-orientation: upright; color:white; font-size:50px; "> Some Ads</span>
 			</div> -->
-			<form class="contact100-form  ">
+			<form action="downloaded"  method="GET" class="contact100-form ">
 				<span class="contact100-form-title">
 					Download NBA Statistics
 				</span>
@@ -39,28 +39,28 @@
 				<label class="label-input100" for="dates">Choose Date or Date Range *</label>				
 				<div id="d1" class="wrap-input100 box1" val="set" onclick="myFunction()">
 					<label class="label-radio100" for="first-name"><span>1 Date</span></label>
-					<input id="signle-date" class="input-radio100" type="radio" name="dates" placeholder="1 Date" checked  style="display: none">
+					<input id="signle-date" class="input-radio100" type="radio" name="one-date" placeholder="1 Date" checked  style="display: none">
 				</div>
 				
 				
 				<div id="d2" class="wrap-input100 box1" val="" onclick="myFunction2()">					
 					<label class="label-radio100" for="first-name"><span>Multiple Dates</span></label>
-					<input id="mutli-dates" class="input-radio100" type="radio" name="dates" placeholder="Date Ranges" style="display: none">					
+					<input id="mutli-dates" class="input-radio100" type="radio" name="multi-dates" placeholder="Date Ranges" style="display: none">					
 				</div>
 				<!------------------------------------->
 				<!-- what date -->
 				<label class="label-input100" id="v1-lable" >Choose The Date</label>
 				<div class="wrap-input100 box1" id="v1-div" val=""  style="width:100%;" onchange="evalHightlight(this)">
-					<input id="date" class="input-radio100" type="date" name="email" style="width:100%;height:100%; " >					
+					<input id="date" class="input-radio100" type="date" name="date-wanted" style="width:100%;height:100%; " >					
 				</div>
 				
 				<label class="label-input100" id="v2-lable" style="display:none">Choose The Date Range
 				<span id="error-msg" style="visibility: hidden; color:red;"></span></label>
 				<div class="wrap-input100"  id="v2-div1" style="display:none;width:50%"  onchange="evalDate(this)">
-					<input id="dates-from" class="input-radio100" type="date" name="email" placeholder="From" style="width: 100%;height:100%">
+					<input id="dates-from" class="input-radio100" type="date" name="date-from" placeholder="From" style="width: 100%;height:100%">
 				</div>
 				<div class="wrap-input100" id="v2-div2" style="display:none;width:50%" onchange="evalDate(this)">
-					 <input id="dates-to" class="input-radio100" type="date" name="email" placeholder="To" onClick="toDate(this.id)" style="width: 100%;height:100%">
+					 <input id="dates-to" class="input-radio100" type="date" name="date-to" placeholder="To" onClick="toDate(this.id)" style="width: 100%;height:100%">
 				</div>
 				<!------------------------------------->
 				<!-- all teams or not? -->
@@ -68,11 +68,11 @@
 				<label class="label-input100">Choose the team(s)</label>
 				<div id="div3" class="wrap-input100 box1" val="set"  onclick="allTeams()">
 					<label class="label-radio100"  for="first-name"><span>All Teams</span></label>
-					<input id="all-teams" class="input-radio100" type="radio" name="teams"  style="display: none">
+					<input id="all-teams" class="input-radio100" type="radio" name="all-teams"  style="display: none">
 				</div>					
 				<div id="div4" class="wrap-input100 box1" val="" onclick="mutiTeams()">					
 					<label class="label-radio100" for="first-name"><span>Specific Teams</span></label>
-					<input id="mutli-teams" class="input-radio100" type="radio" name="teams" autocomplete="off"  style="display: none">					
+					<input id="mutli-teams" class="input-radio100" type="radio" name="some-teams" autocomplete="off"  style="display: none">					
 				</div>
 				<!------------------------------------->
 				<!-- what teams -->
