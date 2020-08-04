@@ -241,7 +241,7 @@ iframe {
 
 .contact100-form {
 	background: #151515;	
-  width: 80%;
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -249,6 +249,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   padding: 0px 55px 63px 55px;
+ 
   
 }
 
@@ -620,6 +621,7 @@ textarea.input100 {
 @media (max-width: 768px) {
   .contact100-form {
     width: 100%;
+    font-size: 10px;
   }
 
   .contact100-more {
@@ -630,6 +632,7 @@ textarea.input100 {
 @media (max-width: 576px) {
   .contact100-form {
     padding: 56px 15px 63px 15px;
+    font-size: 10px;
   }
 
   .rs1-wrap-input100,

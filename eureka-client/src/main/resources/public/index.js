@@ -11,7 +11,7 @@ function animeDone()
 	var animation = document.getElementById("submit-container");
 	if(! document.getElementById("all-teams").checked)
 	{
-		document.getElementsByClassName("container-contact100-form-btn")[0].style.height="10%";
+		document.getElementsByClassName("container-contact100-form-btn")[0].style.height="9.5%";
 		
 		document.getElementById("teams-lable").style.visibility="visible";
 		document.getElementById("teams-div").style.display="block";
@@ -26,7 +26,7 @@ function myFunction() {
   document.getElementById("v2-div2").style.display="none";
 
   document.getElementById("v1-lable").style.display="block";
-  document.getElementById("v1-div").style.display="table";
+  document.getElementById("v1-div").style.display="table-cell";
 
 
   unsetHighlight(document.getElementById("d2"));
@@ -44,8 +44,8 @@ function myFunction2() {
   document.getElementById("v1-div").style.display="none";
 
   document.getElementById("v2-lable").style.display="block";
-  document.getElementById("v2-div1").style.display="table";
-  document.getElementById("v2-div2").style.display="table";
+  document.getElementById("v2-div1").style.display="table-cell";
+  document.getElementById("v2-div2").style.display="table-cell";
 
 
 
