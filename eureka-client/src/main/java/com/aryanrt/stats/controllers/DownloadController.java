@@ -48,7 +48,10 @@ public class DownloadController {
 			 @RequestParam(name="multi-dates", required = false) boolean  multiDates,
 			 @RequestParam(name="date-wanted", required = false) String  dateWanted ,
 			 @RequestParam(name="date-from", required = false) String  dateFrom ,
-			 @RequestParam(name="date-to", required = false) String  dateTo , Model model){
+			 @RequestParam(name="date-to", required = false) String  dateTo , 
+			 @RequestParam(name="all-teams", required = false) String  allTeams , 
+			 @RequestParam(name="some-teams", required = false) String  someTeams ,
+			 @RequestParam(name="teams-selected", required = false) String[]  teamsSelected , Model model){
 
 //	        User user = userRepository.findById(userId);
 //	        model.addAttribute("user", user);
@@ -58,7 +61,11 @@ public class DownloadController {
 		 	System.out.println(dateWanted);
 		 	System.out.println(dateFrom);
 		 	System.out.println(dateTo);
-	        return "downloaded.html";
+		 	System.out.println(allTeams);
+		 	System.out.println(someTeams);
+		 	if(teamsSelected!= null);
+		 		System.out.println(teamsSelected.length);
+	        return "index.html";
 	    }
 	 
 		/* 

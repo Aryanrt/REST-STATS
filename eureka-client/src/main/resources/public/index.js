@@ -60,6 +60,7 @@ function myFunction2() {
 function allTeams(){
 
 	document.getElementById("all-teams").checked=true;
+	document.getElementById("mutli-teams").checked = false;
 	var animation = document.getElementById("submit-container");
 	
     document.getElementById("teams-lable").style.visibility="hidden";
@@ -80,6 +81,7 @@ function allTeams(){
 }
 function mutiTeams(){
 	document.getElementById("mutli-teams").checked = true;
+	document.getElementById("all-teams").checked=false;
 
 	//document.getElementById("submit-button").setAttribute("val","multi");
 	
@@ -92,11 +94,7 @@ function mutiTeams(){
 	unsetHighlight(document.getElementById("div3"));
     setHighlight(document.getElementById("div4"));
 }
-	
-function toDate(id)
-{
-	//document.getElementById(id).type="date";		
-}
+
 function selectTeam(element)
 {
 
