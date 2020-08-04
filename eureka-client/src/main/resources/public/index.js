@@ -20,25 +20,65 @@ function animeDone()
 }
 function validateSubmission()
 {
-/*	if(! document.getElementById("submit-button").disabled )
-		return;
-	*/
+	
+	//validate 1 day
 	if(document.getElementById("signle-date").checked && document.getElementById("date").value =="")
 	{
 		document.getElementById("error-msg-no-date").textContent = "Please Select A Day or Day Range";
 		document.getElementById("error-msg-no-date").style.visibility = "visible";
 	}
+	
+	//validate date range
 	if(document.getElementById("mutli-dates").checked )
 	{
 		if(document.getElementById("dates-from").value =="" && document.getElementById("dates-to").value =="")
+		{
 			document.getElementById("error-msg").textContent = "Please Select The Starting and Ending Days";
+			document.getElementById("error-msg").style.visibility = "visible";	
+		}
 		else if(document.getElementById("dates-from").value =="")
+		{
+			document.getElementById("error-msg").style.visibility = "visible";	
 			document.getElementById("error-msg").textContent = "Please Select The Starting Day";
+		}
 		else if(document.getElementById("dates-to").value =="")
-			document.getElementById("error-msg").textContent = "Please Select The Ending Day";			
-		document.getElementById("error-msg").style.visibility = "visible";	
+		{
+			document.getElementById("error-msg").textContent = "Please Select The Ending Day";
+			document.getElementById("error-msg").style.visibility = "visible";	
+		}		
 	}
-}
+	//validate teams
+	if(document.getElementById("mutli-teams").checked)
+	{
+		var flag = false;
+		for(i=1; i <= 30; i++)
+		{
+			if(document.getElementById("team"+i).getAttribute("val") =="set")
+				flag = true;
+		}
+		//if no team selected
+		if(! flag)
+		{
+			document.getElementById("error-msg-teams").textContent = "Please Choose your desiered teams";
+			document.getElementById("error-msg-teams").style.visibility = "visible";
+		}
+		else
+			document.getElementById("error-msg-teams").style.visibility = "hidden";
+	}
+
+ 
+	document.getElementById("submit-button").disabled = false;
+	if( document.getElementById("mutli-teams").checked && document.getElementById("error-msg-teams").style.visibility !="hidden")
+		document.getElementById("submit-button").disabled = true;
+	else if(document.getElementById("signle-date").checked && document.getElementById("error-msg-no-date").style.visibility !="hidden")
+		document.getElementById("submit-button").disabled = true;
+	else if(document.getElementById("mutli-dates").checked && document.getElementById("error-msg").style.visibility !="hidden")
+		document.getElementById("submit-button").disabled = true;
+/*
+	if ((document.getElementById("signle-date").checked && document.getElementById("error-msg-no-date").style.visibility =="hidden") ||
+		(document.getElementById("mutli-dates").checked && document.getElementById("error-msg").style.visibility =="hidden"))
+		document.getElementById("submit-button").disabled = false;
+*/}
 
 function myFunction() {
   // Get the checkbox
@@ -79,6 +119,7 @@ function myFunction2() {
 
 function allTeams(){
 
+	document.getElementById("error-msg-teams").style.visibility = "hidden";
 	document.getElementById("all-teams").checked=true;
 	document.getElementById("mutli-teams").checked = false;
 	var animation = document.getElementById("submit-container");
@@ -117,7 +158,7 @@ function mutiTeams(){
 
 function selectTeam(element)
 {
-
+	document.getElementById("error-msg-teams").style.visibility = "hidden";
 	if( element.getElementsByTagName("input")[0].checked )
 	{
 		element.style.backgroundColor = "#e6e6e6";
@@ -199,16 +240,16 @@ function evalDate(element)
 		document.getElementById("v2-div2").setAttribute("val","error");
 		document.getElementById("error-msg").textContent = " Ending Day Can Not Be Before The Starting Day";
 		document.getElementById("error-msg").style.visibility = "visible";
-		document.getElementById("submit-button").disabled = true;
+		//document.getElementById("submit-button").disabled = true;
 		
 	}
 	else if( new Date(fromDate.getTime() + 7 * 24 * 60 * 60 * 1000) < toDate)
 	{
 		document.getElementById("v2-div1").setAttribute("val","error");
 		document.getElementById("v2-div2").setAttribute("val","error");
-		document.getElementById("error-msg").textContent = " In Trial Mode, The Maximum Date Range Is 1 Week";
+		document.getElementById("error-msg").textContent = "In Trial Mode, The Maximum Date Range Is 1 Week";
 		document.getElementById("error-msg").style.visibility = "visible";
-		document.getElementById("submit-button").disabled = true;
+		//document.getElementById("submit-button").disabled = true;
 	}
 	else
 	{
@@ -217,9 +258,9 @@ function evalDate(element)
 		if( document.getElementById("v2-div2").getAttribute("val") == "error")
 			document.getElementById("v2-div2").setAttribute("val","set");
 		
-		document.getElementById("error-msg").textContent = "";
+	//	document.getElementById("error-msg").textContent = "";
 		document.getElementById("error-msg").style.visibility = "hidden";	
-		document.getElementById("submit-button").disabled = false;	
+		//document.getElementById("submit-button").disabled = false;	
 	}
 
 }
