@@ -18,6 +18,27 @@ function animeDone()
 	}
 
 }
+function validateSubmission()
+{
+/*	if(! document.getElementById("submit-button").disabled )
+		return;
+	*/
+	if(document.getElementById("signle-date").checked && document.getElementById("date").value =="")
+	{
+		document.getElementById("error-msg-no-date").textContent = "Please Select A Day or Day Range";
+		document.getElementById("error-msg-no-date").style.visibility = "visible";
+	}
+	if(document.getElementById("mutli-dates").checked )
+	{
+		if(document.getElementById("dates-from").value =="" && document.getElementById("dates-to").value =="")
+			document.getElementById("error-msg").textContent = "Please Select The Starting and Ending Days";
+		else if(document.getElementById("dates-from").value =="")
+			document.getElementById("error-msg").textContent = "Please Select The Starting Day";
+		else if(document.getElementById("dates-to").value =="")
+			document.getElementById("error-msg").textContent = "Please Select The Ending Day";			
+		document.getElementById("error-msg").style.visibility = "visible";	
+	}
+}
 
 function myFunction() {
   // Get the checkbox
@@ -27,7 +48,6 @@ function myFunction() {
 
   document.getElementById("v1-lable").style.display="flex";
   document.getElementById("v1-div").style.display="table";
-
 
   unsetHighlight(document.getElementById("d2"));
   setHighlight(document.getElementById("d1"));
@@ -142,6 +162,7 @@ function evalHightlight(element)
 	if(element.tagName == "DIV")
 	{
 		
+ 		 document.getElementById("error-msg-no-date").style.visibility = "hidden";
 		if(element.getElementsByTagName("input")[0].value == "")
 			unsetHighlight(element);
 		else

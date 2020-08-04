@@ -49,13 +49,14 @@
 				</div>
 				<!------------------------------------->
 				<!-- what date -->
-				<label class="label-input100" id="v1-lable" >Choose The Date</label>
+				<label class="label-input100" id="v1-lable" >Choose The Date
+				<span id="error-msg-no-date" style="visibility: hidden; color:red; padding:0 0 0 20px"></span></label>
 				<div class="wrap-input100 box1" id="v1-div" val=""  style="width:100%;" onchange="evalHightlight(this)">
 					<input id="date" class="input-radio100" type="date" name="date-wanted" style="width:100%;height:100%; " >					
 				</div>
 				
 				<label class="label-input100" id="v2-lable" style="display:none">Choose The Date Range
-				<span id="error-msg" style="visibility: hidden; color:red;"></span></label>
+				<span id="error-msg" style="visibility: hidden; color:red; padding:0 0 0 20px"></span></label>
 				<div class="wrap-input100"  id="v2-div1" style="display:none;width:50%"  onchange="evalDate(this)">
 					<input id="dates-from" class="input-radio100" type="date" name="date-from" placeholder="From" style="width: 100%;height:100%">
 				</div>
@@ -143,10 +144,12 @@
 					
 					
 				</div>				
-				<div id="submit-container" class="container-contact100-form-btn">
-					<button id="submit-button" class="contact100-form-btn" val="">
+				<div id="submit-container" class="container-contact100-form-btn"  onmouseenter="validateSubmission()">
+					<div>
+					<button id="submit-button" class="contact100-form-btn" disabled>
 						Download
 					</button>
+					</div>
 				</div>
 			</form>
  <!-- 
