@@ -5,9 +5,8 @@ function myFunction() {
   document.getElementById("v2-div2").style.display="none";
 
   document.getElementById("v1-lable").style.display="block";
-  document.getElementById("v1-div").style.display="block";
-  document.getElementById("v1-lable").style.visibility="visible";
-  document.getElementById("v1-div").style.visibility="visible";
+  document.getElementById("v1-div").style.display="table";
+
 
   unsetHighlight(document.getElementById("d2"));
   setHighlight(document.getElementById("d1"));
@@ -18,12 +17,16 @@ function myFunction() {
 } 
 function myFunction2() {
   
+
+
   document.getElementById("v1-lable").style.display="none";
   document.getElementById("v1-div").style.display="none";
 
   document.getElementById("v2-lable").style.display="block";
-  document.getElementById("v2-div1").style.display="block";
-  document.getElementById("v2-div2").style.display="block";
+  document.getElementById("v2-div1").style.display="table";
+  document.getElementById("v2-div2").style.display="table";
+
+
 
  unsetHighlight(document.getElementById("d1"));
  setHighlight(document.getElementById("d2"));
@@ -167,4 +170,3 @@ function evalDate(element)
 	}
 
 }
-

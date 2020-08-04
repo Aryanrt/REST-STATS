@@ -2,6 +2,7 @@
 
 
 
+
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -337,6 +338,7 @@ iframe {
   
 }
 .input-radio100 {
+
 	background: #151515;	
   display: table-cell;  
   width:50%;
@@ -483,7 +485,6 @@ label[val="unset"]{
 	text-shadow: 0 -1px 0 #000;
 	width: 80px;
 }	
-
 .webdesigntuts-workshop button:hover,
 .webdesigntuts-workshop button:focus {
 	background: #292929;
@@ -491,7 +492,6 @@ label[val="unset"]{
 	color: #5f5;
 	outline: none;
 }
-
 .webdesigntuts-workshop button:active {
 	background: #292929;
 	background: linear-gradient(#393939, #292929);
@@ -708,6 +708,5 @@ textarea.input100 {
     opacity: 1;
   }
 }
-
 
 
