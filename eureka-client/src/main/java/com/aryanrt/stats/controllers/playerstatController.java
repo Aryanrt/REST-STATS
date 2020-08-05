@@ -53,6 +53,7 @@ public class playerstatController {
 
 		  PlayerstatsPK pk = new PlayerstatsPK();
 		  pk.setGame(gameID);
+		  
 		  pk.setPlayerID(playerID);
 		  if(playerstatRepository.findById(pk) == null)
 			  return result;

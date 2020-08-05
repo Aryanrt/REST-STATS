@@ -1,5 +1,6 @@
 package com.aryanrt.stats.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -13,4 +14,5 @@ import com.aryanrt.stats.models.Matchup;
 public interface GameRepository extends PagingAndSortingRepository<Game, GamePK> {
 	//Optional<Game> findById(GamePK id);
 	Game findByGameID(int id);
+	List<Game> findById_Date(String Date);
 }

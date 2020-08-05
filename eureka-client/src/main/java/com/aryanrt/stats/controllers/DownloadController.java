@@ -70,14 +70,10 @@ public class DownloadController {
 		 	dateWanted = dateWanted.replaceAll("-", "");
 		 	System.out.println(dateWanted);
 
-		 	int i=0;
 		 	//gameRepository.findByDate(date)
-		 	for(Game game : gameRepository.findAll()) 
+		 	for(Game game : gameRepository.findById_Date(dateWanted)) 
 		 	{
 		 		String gameResult="";
-		 		
-		 		if(! game.getId().getDate().contentEquals(dateWanted))
-		 			continue;
 		 		
 		 		Matchup matchup = game.getId().getMatchupID();
 		 		String date = game.getId().getDate();
@@ -89,7 +85,7 @@ public class DownloadController {
 
 		 		String uri = "http://localhost:8080/teamstats/"+team1.getAbbriviation()+"/"+gameId;
 		 	    RestTemplate restTemplate = new RestTemplate();
-		 	   gameResult += restTemplate.getForObject(uri, String.class);
+		 	    gameResult += restTemplate.getForObject(uri, String.class);
 
 		 	    //System.out.println(gameResult);
 		 		
@@ -98,8 +94,12 @@ public class DownloadController {
 		 		for(Player player: playersTeam1)
 		 		{
 		 			uri = "http://localhost:8080/playerstats/"+player.getPlayerID()+"/"+gameId;
-		 			gameResult += restTemplate.getForObject(uri, String.class);
-			 	    
+		 			gameResult += (restTemplate.getForObject(uri, String.class)!= null?(restTemplate.getForObject(uri, String.class)):"");			 	    
+		 		}
+		 		for(Player player: playersTeam2)
+		 		{
+		 			uri = "http://localhost:8080/playerstats/"+player.getPlayerID()+"/"+gameId;
+		 			gameResult += (restTemplate.getForObject(uri, String.class)!= null?(restTemplate.getForObject(uri, String.class)):"");			 	    
 		 		}
 		 		System.out.println(gameResult);
 		 		break;
