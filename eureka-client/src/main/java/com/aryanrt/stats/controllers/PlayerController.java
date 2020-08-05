@@ -68,7 +68,7 @@ public class PlayerController {
 		  String lastName = Character.toUpperCase(player.getId().getLastName().charAt(0))+player.getId().getLastName().substring(1);;
 		  
 		  result.addProperty("Name",  firstName + " " + lastName );
-		  result.addProperty("Team Name",player.getId().getTeam().getTeamName().substring(0,player.getId().getTeam().getTeamName().length()-1));
+		  result.addProperty("Team Name",player.getId().getTeam().getTeamName());
 		  result.addProperty("Team href",baseURL+"/teams/"+player.getId().getTeam().getAbbriviation());
 
 		  DecimalFormat df = new DecimalFormat("#.##");
