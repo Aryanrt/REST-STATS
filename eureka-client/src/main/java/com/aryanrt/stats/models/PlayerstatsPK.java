@@ -12,6 +12,12 @@ public class PlayerstatsPK  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public PlayerstatsPK(int playerID, int gameID) {
+		super();
+		this.playerID = playerID;
+		this.gameID = gameID;
+	}
+
 	@Column(name="playerID")
 	private int playerID;
 	

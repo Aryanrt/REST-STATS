@@ -10,9 +10,8 @@ import com.aryanrt.stats.models.Game;
 import com.aryanrt.stats.models.GamePK;
 import com.aryanrt.stats.models.Matchup;
 
-@RepositoryRestResource(collectionResourceRel = "game", path = "game")
+@RepositoryRestResource
 public interface GameRepository extends PagingAndSortingRepository<Game, GamePK> {
-	//Optional<Game> findById(GamePK id);
 	Game findByGameID(int id);
 	List<Game> findById_Date(String Date);
 }

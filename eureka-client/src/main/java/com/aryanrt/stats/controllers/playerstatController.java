@@ -19,6 +19,10 @@ import com.aryanrt.stats.models.TeamstatsPK;
 import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.repositories.PlayerRepository;
 import com.aryanrt.stats.repositories.PlayerstatRepository;
+import com.aryanrt.stats.service.PlayerService;
+import com.aryanrt.stats.service.PlayerstatService;
+import com.aryanrt.stats.service.impl.PlayerServiceImpl;
+import com.aryanrt.stats.service.impl.playerstatServiceImpl;
 import com.google.gson.JsonObject;
 
 @RestController
@@ -32,91 +36,102 @@ public class playerstatController {
 	
 	@Autowired
 	private PlayerstatRepository playerstatRepository;
+	
+	private PlayerstatService playerstatService;
 
 
-	  // Aggregate root
-
-	  @GetMapping(value="/playerstats",produces="application/json")
-	  JsonObject all(HttpServletRequest request) 
-	  {
-		//This looks not necessary
-		return null;
-	  }
+	public playerstatController(PlayerstatService playerstatService) {
+		super();
+		this.playerstatService = playerstatService;
+	}
 
 
-	  @GetMapping(value="/playerstats/{playerID}/{gameID}", produces="application/json")
-	  public JsonObject one(@PathVariable int playerID, @PathVariable int gameID, HttpServletRequest request) {
+	// Aggregate root
 
-		  Player player = playerRepository.findByPlayerID(playerID);
-		  String baseURL = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
-		  JsonObject result = new JsonObject();
+	@GetMapping(value="/playerstats",produces="application/json")
+	List<Playerstat> all(HttpServletRequest request) 
+	{
+		return playerstatService.findAll();
+	}
 
-		  PlayerstatsPK pk = new PlayerstatsPK();
-		  pk.setGame(gameID);
-		  
-		  pk.setPlayerID(playerID);
-		  if(playerstatRepository.findById(pk) == null)
-			  return result;
-		  Playerstat stat= playerstatRepository.findById(pk).orElse(null);
-		  Game game = gameRepository.findByGameID(gameID);
-		  if(game == null || stat == null)
-			  return result;
-		  String opponentName, opp;
-		  String date = game.getId().getDate();
-		  
-		  if( player.getId().getTeam() == game.getId().getMatchupID().getTeam1())
-		  {
-			  opponentName = game.getId().getMatchupID().getTeam2().getTeamName();
-			  opp = game.getId().getMatchupID().getTeam2().getAbbriviation();
-		  }
-		  else
-		  {
-			  opponentName = game.getId().getMatchupID().getTeam1().getTeamName();
-			  opp = game.getId().getMatchupID().getTeam1().getAbbriviation(); 
-		  }
-		  
-		  
-		  result.addProperty("href",baseURL+"/playerstats/"+playerID+"/"+gameID);
-			  
-		  String firstName = Character.toUpperCase(player.getId().getFirstName().charAt(0))+player.getId().getFirstName().substring(1);
-		  String lastName = Character.toUpperCase(player.getId().getLastName().charAt(0))+player.getId().getLastName().substring(1);;
-		  
-		  result.addProperty("Name",  firstName + " " + lastName );
-		  result.addProperty("Player Profile",  baseURL+"/players/"+playerID);
-		  result.addProperty("Team Name",player.getId().getTeam().getTeamName().substring(0,player.getId().getTeam().getTeamName().length()-1));
-		  result.addProperty("Team href",baseURL+"/teams/"+player.getId().getTeam().getAbbriviation());
-		  result.addProperty("Agianst",opponentName.substring(0,opponentName.length()-1));
-		  result.addProperty("Against href",baseURL+"/teams/"+opp);
-		  result.addProperty("Location",game.getLocation());
-		  result.addProperty("Date", date.substring(0,4)+"/"+ date.substring(4,6)+"/"+ date.substring(6) );
-
-		  DecimalFormat df = new DecimalFormat("#.##");
-		  
-		  JsonObject temp = new JsonObject();
-		  temp.addProperty("Points",stat.getPts());
-		  temp.addProperty("Assists",stat.getAst());
-		  temp.addProperty("Steals",stat.getStl());
-		  temp.addProperty("Blocks",stat.getBs());
-		  temp.addProperty("Overall Rebounds",stat.getReb());
-		  temp.addProperty("Off Rebounds",stat.getOrb());
-		  temp.addProperty("Def Rebounds",stat.getDrb());
-		  temp.addProperty("FG %",(stat.getFga() != 0) ? Double.parseDouble(df.format(stat.getFgm() / stat.getFga())) : 0) ;
-		  temp.addProperty("FGA",stat.getFga());
-		  temp.addProperty("FGM",stat.getFgm());
-		  temp.addProperty("3P %",stat.getThreepa() != 0 ?  Double.parseDouble(df.format(stat.getThreepm()/stat.getThreepa())):0);
-		  temp.addProperty("3PA",stat.getThreepa());
-		  temp.addProperty("3PM",stat.getThreepm());
-		  temp.addProperty("FT %",stat.getFta() != 0 ?  Double.parseDouble(df.format(stat.getFtm()/stat.getFta())):0);
-		  temp.addProperty("FTA",stat.getFta());
-		  temp.addProperty("FTM",stat.getFtm());
-		  temp.addProperty("Minutes",stat.getMin());
-		  temp.addProperty("Turnovers",stat.getTov());
-		  temp.addProperty("Personal Fouls",stat.getPf());
-		  
-		  result.add("Performance", temp);
-
-		  
-		
-		  return result;
-	  }
+	@GetMapping(value="/playerstats/{playerID}/{gameID}", produces="application/json")
+	public Playerstat one(@PathVariable int playerID, @PathVariable int gameID, HttpServletRequest request) 
+	{
+		return playerstatService.findOne(playerID, gameID);
+	}
+//	  @GetMapping(value="/playerstats/{playerID}/{gameID}", produces="application/json")
+//	  public JsonObject one(@PathVariable int playerID, @PathVariable int gameID, HttpServletRequest request) {
+//
+//		  Player player = playerRepository.findByPlayerID(playerID);
+//		  String baseURL = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
+//		  JsonObject result = new JsonObject();
+//
+//		  PlayerstatsPK pk = new PlayerstatsPK();
+//		  pk.setGame(gameID);
+//		  
+//		  pk.setPlayerID(playerID);
+//		  if(playerstatRepository.findById(pk) == null)
+//			  return result;
+//		  Playerstat stat= playerstatRepository.findById(pk).orElse(null);
+//		  Game game = gameRepository.findByGameID(gameID);
+//		  if(game == null || stat == null)
+//			  return result;
+//		  String opponentName, opp;
+//		  String date = game.getId().getDate();
+//		  
+//		  if( player.getId().getTeam() == game.getId().getMatchupID().getTeam1())
+//		  {
+//			  opponentName = game.getId().getMatchupID().getTeam2().getTeamName();
+//			  opp = game.getId().getMatchupID().getTeam2().getAbbriviation();
+//		  }
+//		  else
+//		  {
+//			  opponentName = game.getId().getMatchupID().getTeam1().getTeamName();
+//			  opp = game.getId().getMatchupID().getTeam1().getAbbriviation(); 
+//		  }
+//		  
+//		  
+//		  result.addProperty("href",baseURL+"/playerstats/"+playerID+"/"+gameID);
+//			  
+//		  String firstName = Character.toUpperCase(player.getId().getFirstName().charAt(0))+player.getId().getFirstName().substring(1);
+//		  String lastName = Character.toUpperCase(player.getId().getLastName().charAt(0))+player.getId().getLastName().substring(1);;
+//		  
+//		  result.addProperty("Name",  firstName + " " + lastName );
+//		  result.addProperty("Player Profile",  baseURL+"/players/"+playerID);
+//		  result.addProperty("Team Name",player.getId().getTeam().getTeamName().substring(0,player.getId().getTeam().getTeamName().length()-1));
+//		  result.addProperty("Team href",baseURL+"/teams/"+player.getId().getTeam().getAbbriviation());
+//		  result.addProperty("Agianst",opponentName.substring(0,opponentName.length()-1));
+//		  result.addProperty("Against href",baseURL+"/teams/"+opp);
+//		  result.addProperty("Location",game.getLocation());
+//		  result.addProperty("Date", date.substring(0,4)+"/"+ date.substring(4,6)+"/"+ date.substring(6) );
+//
+//		  DecimalFormat df = new DecimalFormat("#.##");
+//		  
+//		  JsonObject temp = new JsonObject();
+//		  temp.addProperty("Points",stat.getPts());
+//		  temp.addProperty("Assists",stat.getAst());
+//		  temp.addProperty("Steals",stat.getStl());
+//		  temp.addProperty("Blocks",stat.getBs());
+//		  temp.addProperty("Overall Rebounds",stat.getReb());
+//		  temp.addProperty("Off Rebounds",stat.getOrb());
+//		  temp.addProperty("Def Rebounds",stat.getDrb());
+//		  temp.addProperty("FG %",(stat.getFga() != 0) ? Double.parseDouble(df.format(stat.getFgm() / stat.getFga())) : 0) ;
+//		  temp.addProperty("FGA",stat.getFga());
+//		  temp.addProperty("FGM",stat.getFgm());
+//		  temp.addProperty("3P %",stat.getThreepa() != 0 ?  Double.parseDouble(df.format(stat.getThreepm()/stat.getThreepa())):0);
+//		  temp.addProperty("3PA",stat.getThreepa());
+//		  temp.addProperty("3PM",stat.getThreepm());
+//		  temp.addProperty("FT %",stat.getFta() != 0 ?  Double.parseDouble(df.format(stat.getFtm()/stat.getFta())):0);
+//		  temp.addProperty("FTA",stat.getFta());
+//		  temp.addProperty("FTM",stat.getFtm());
+//		  temp.addProperty("Minutes",stat.getMin());
+//		  temp.addProperty("Turnovers",stat.getTov());
+//		  temp.addProperty("Personal Fouls",stat.getPf());
+//		  
+//		  result.add("Performance", temp);
+//
+//		  
+//		
+//		  return result;
+//	  }
 }

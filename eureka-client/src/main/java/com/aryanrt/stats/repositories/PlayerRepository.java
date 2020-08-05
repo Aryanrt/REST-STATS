@@ -7,7 +7,7 @@ import com.aryanrt.stats.models.PlayerPK;
 import com.aryanrt.stats.models.Team;
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "player", path = "player")
+@RepositoryRestResource
 public interface PlayerRepository extends PagingAndSortingRepository<Player, PlayerPK> {
 	Player findByPlayerID(int id);
 	List<Player>findById_team(Team team);
