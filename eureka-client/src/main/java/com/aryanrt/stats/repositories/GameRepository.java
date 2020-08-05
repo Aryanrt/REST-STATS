@@ -14,4 +14,5 @@ import com.aryanrt.stats.models.Matchup;
 public interface GameRepository extends PagingAndSortingRepository<Game, GamePK> {
 	Game findByGameID(int id);
 	List<Game> findById_Date(String Date);
+	List<Game> findById_MatchupID(Matchup matchupID);
 }

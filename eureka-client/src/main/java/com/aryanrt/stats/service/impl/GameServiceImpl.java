@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.aryanrt.stats.models.Game;
+import com.aryanrt.stats.models.Matchup;
 import com.aryanrt.stats.repositories.GameRepository;
 import com.aryanrt.stats.service.GameService;
 
@@ -24,5 +25,9 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public Game findOne(int gameId) {
 		return gameRepository.findByGameID(gameId);
+	}
+	public List<Game> findByMatchup(Matchup matchup)
+	{
+		return gameRepository.findById_MatchupID(matchup);
 	}
 }

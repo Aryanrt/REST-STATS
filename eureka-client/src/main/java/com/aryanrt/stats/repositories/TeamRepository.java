@@ -11,4 +11,5 @@ import com.aryanrt.stats.models.Team;
 public interface TeamRepository extends PagingAndSortingRepository<Team, java.lang.String> {
 
     Team findByAbbriviation(String abbrivation);
+    
 }
