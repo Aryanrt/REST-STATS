@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.aryanrt.stats.models.Player;
+import com.aryanrt.stats.models.Team;
 import com.aryanrt.stats.repositories.PlayerRepository;
 import com.aryanrt.stats.service.PlayerService;
 
@@ -28,6 +29,11 @@ public class PlayerServiceImpl implements PlayerService {
 	public Player findOne(int id) {
 		// TODO Auto-generated method stub
 		return playerRepository.findByPlayerID(id);
+	}
+	@Override
+	public List<Player> findByTeam(Team team) {
+		// TODO Auto-generated method stub
+		return playerRepository.findById_team(team);
 	}
 
 }
