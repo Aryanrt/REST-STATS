@@ -32,6 +32,18 @@ public class playerstatServiceImpl implements PlayerstatService{
 	public List<Playerstat> findByGameID(int gameId) {
 		return playerstatRepository.findById_gameID(gameId);
 	}
+	@Override
+	public List<Playerstat> findByPlayerId(int playerId) {
+		List<Playerstat> result = new ArrayList<Playerstat>();
+		
+		for(Playerstat playerstat: playerstatRepository.findById_playerID(playerId))
+		{
+			if(! playerstat.getMin().equals("0"))
+				result.add(playerstat);
+		}
+		
+		return result;
+	}
 	
 	
 }

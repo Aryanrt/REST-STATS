@@ -10,4 +10,5 @@ import com.aryanrt.stats.models.PlayerstatsPK;
 @RepositoryRestResource
 public interface PlayerstatRepository extends PagingAndSortingRepository<Playerstat, PlayerstatsPK> {
 	List<Playerstat>findById_gameID(int gameID);
+	List<Playerstat>findById_playerID(int playerId);
 }

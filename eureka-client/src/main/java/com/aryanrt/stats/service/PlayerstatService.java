@@ -7,4 +7,5 @@ public interface PlayerstatService {
 	List<Playerstat> findAll();
 	Playerstat findOne(int playerId, int gameId);
 	List<Playerstat> findByGameID(int gameId);
+	List<Playerstat> findByPlayerId(int playerId);
 }
