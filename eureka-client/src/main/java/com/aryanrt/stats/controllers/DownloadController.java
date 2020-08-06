@@ -1,10 +1,17 @@
 package com.aryanrt.stats.controllers;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.MediaType;
 
+import org.h2.util.DoneFuture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +34,9 @@ import com.aryanrt.stats.repositories.MatchupRepository;
 import com.aryanrt.stats.repositories.PlayerRepository;
 import com.aryanrt.stats.repositories.PlayerstatRepository;
 import com.aryanrt.stats.repositories.TeamstatRepository;
+import com.aryanrt.stats.service.DownloadService;
 import com.google.gson.JsonObject;
+import org.springframework.core.io.FileSystemResource;
 
 @Controller
 public class DownloadController {
@@ -45,73 +54,96 @@ public class DownloadController {
 	private PlayerRepository playerRepository;
 	@Autowired
 	private PlayerstatRepository playerstatRepository;
+	
+	private final DownloadService downloadService;
 
-	 @GetMapping("/downloaded")
-	 public String downloaded(@RequestParam(name="one-date", required = false) boolean  oneDate,
-			 @RequestParam(name="multi-dates", required = false) boolean  multiDates,
-			 @RequestParam(name="date-wanted", required = false) String  dateWanted ,
-			 @RequestParam(name="date-from", required = false) String  dateFrom ,
-			 @RequestParam(name="date-to", required = false) String  dateTo , 
-			 @RequestParam(name="all-teams", required = false) String  allTeams , 
-			 @RequestParam(name="some-teams", required = false) String  someTeams ,
-			 @RequestParam(name="teams-selected", required = false) String[]  teamsSelected , Model model){
+	public DownloadController(DownloadService downloadService) 
+	{
+		this.downloadService = downloadService;
+		// TODO Auto-generated constructor stub
+	}
+	@GetMapping("/downloaded")
+	public String downloaded(HttpServletRequest request, 
+	 HttpServletResponse response, @RequestParam(name="one-date", required = false) boolean  oneDate,
+	 @RequestParam(name="multi-dates", required = false) boolean  multiDates,
+	 @RequestParam(name="date-wanted", required = false) String  dateWanted ,
+	 @RequestParam(name="date-from", required = false) String  dateFrom ,
+	 @RequestParam(name="date-to", required = false) String  dateTo , 
+	 @RequestParam(name="all-teams", required = false) boolean  allTeams , 
+	 @RequestParam(name="some-teams", required = false) boolean  someTeams ,
+	 @RequestParam(name="teams-selected", required = false) String[]  teamsSelected , Model model)
+	{
 
-//	        User user = userRepository.findById(userId);
-//	        model.addAttribute("user", user);
-
-		 	System.out.println(oneDate);
-		 	System.out.println(multiDates);
-		 	System.out.println(dateWanted);
-		 	System.out.println(dateFrom);
-		 	System.out.println(dateTo);
-		 	System.out.println(allTeams);
-		 	System.out.println(someTeams);
-		 	
+		File file = new File("./data.csv");
+		FileWriter fileWriter = null;
+		String result = "";
+		try {
+			if(file.createNewFile())
+				System.out.println("created");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			fileWriter = new FileWriter(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		 
+//
+//		 	System.out.println(oneDate);
+//		 	System.out.println(multiDates);
+//		 	System.out.println(dateWanted);
+//		 	System.out.println(dateFrom);
+//		 	System.out.println(dateTo);
+//		 	System.out.println(allTeams);
+//		 	System.out.println(someTeams);
+//		 	for(int i =0;i< teamsSelected.length;i++)
+//		 		System.out.println(teamsSelected[i]);
+//		 	
 		 	dateWanted = dateWanted.replaceAll("-", "");
+		 	result = downloadService.getStatDate(dateWanted);
 		 	System.out.println(dateWanted);
 
-		 	//gameRepository.findByDate(date)
-		 	for(Game game : gameRepository.findById_Date(dateWanted)) 
-		 	{
-		 		String gameResult="";
-		 		
-		 		Matchup matchup = game.getId().getMatchupID();
-		 		String date = game.getId().getDate();
-		 		int gameId = game.getGameID();
-		 		Team team1 = matchup.getTeam1();
-		 		Team team2 = matchup.getTeam2();		 		
-		 		Teamstat teamstat1 = teamstatsRepository.findById(new TeamstatsPK(gameId, team1)).orElse(null);
-		 		Teamstat teamstat2 = teamstatsRepository.findById(new TeamstatsPK(gameId, team2)).orElse(null);
 
-		 		String uri = "http://localhost:8080/teamstats/"+team1.getAbbriviation()+"/"+gameId;
-		 	    RestTemplate restTemplate = new RestTemplate();
-		 	    gameResult += restTemplate.getForObject(uri, String.class);
-
-		 	    //System.out.println(gameResult);
+		 		try {
+					fileWriter.append(result);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		 		try {
+					fileWriter.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		 		//HttpServletResponse resp = new 
 		 		
-		 	    List<Player> playersTeam1 = playerRepository.findById_team(team1); 
-		 		List<Player> playersTeam2 = playerRepository.findById_team(team2); 
-		 		for(Player player: playersTeam1)
-		 		{
-		 			uri = "http://localhost:8080/playerstats/"+player.getPlayerID()+"/"+gameId;
-		 			gameResult += (restTemplate.getForObject(uri, String.class)!= null?(restTemplate.getForObject(uri, String.class)):"");			 	    
-		 		}
-		 		for(Player player: playersTeam2)
-		 		{
-		 			uri = "http://localhost:8080/playerstats/"+player.getPlayerID()+"/"+gameId;
-		 			gameResult += (restTemplate.getForObject(uri, String.class)!= null?(restTemplate.getForObject(uri, String.class)):"");			 	    
-		 		}
-		 		System.out.println(gameResult);
-		 		break;
-		 	}
-		 	//System.out.println(i);
-		 	
-		 	
+	 	//System.out.println(i);
+//		 	 HttpHeaders headers = new HttpHeaders();
+//		     headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+//		     response.setHeader("Content-Disposition", "attachment; filename=" + zipFile.getFileName());
+//		 	FileSystemResource t = new FileSystemResource(file);
+//		 	return new HttpEntity<byte[]>(zipFile.getByteArray(), headers);
 			/*
 			 * if(teamsSelected!= null); System.out.println(teamsSelected.length);
 			 */
-	        return "index.html";
-	    }
+	        response.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+            response.addHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
+            response.setContentLength((int) file.length());
+          
+            try
+            {
+                Files.copy(file.toPath(), response.getOutputStream());
+                response.getOutputStream().flush();
+            } 
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+          return "downloaded.html";
+	}
 	 
 		/* 
 		 * @GetMapping(value="/games",produces="application/json") public JsonObject
@@ -194,5 +226,9 @@ public class DownloadController {
 		 * 
 		 * }
 		 */
+	private String getBoxScore(int gameID)
+	{
+		return "";
+	}
 
 }

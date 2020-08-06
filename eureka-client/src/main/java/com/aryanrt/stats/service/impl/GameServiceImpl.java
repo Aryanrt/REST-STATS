@@ -26,8 +26,14 @@ public class GameServiceImpl implements GameService {
 	public Game findOne(int gameId) {
 		return gameRepository.findByGameID(gameId);
 	}
+	@Override
 	public List<Game> findByMatchup(Matchup matchup)
 	{
 		return gameRepository.findById_MatchupID(matchup);
+	}
+	@Override
+	public List<Game> findByDate(String Date)
+	{
+		return gameRepository.findById_Date(Date);
 	}
 }

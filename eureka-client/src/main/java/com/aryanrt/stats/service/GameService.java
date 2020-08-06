@@ -8,4 +8,5 @@ public interface GameService {
 	List<Game> findAll();
 	Game findOne(int gameId);
 	List<Game> findByMatchup(Matchup matchup);
+	List<Game> findByDate(String Date);
 }
