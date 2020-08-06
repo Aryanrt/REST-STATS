@@ -103,7 +103,10 @@ public class DownloadController {
 //		 		System.out.println(teamsSelected[i]);
 //		 	
 		 	dateWanted = dateWanted.replaceAll("-", "");
-		 	result = downloadService.getStatDate(dateWanted);
+		 	if(someTeams)
+		 		result = downloadService.getStatDate(dateWanted, teamsSelected);
+		 	else
+		 		result = downloadService.getStatDate(dateWanted);
 		 	System.out.println(dateWanted);
 
 

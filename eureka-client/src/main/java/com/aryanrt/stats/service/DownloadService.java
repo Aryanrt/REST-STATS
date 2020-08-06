@@ -8,7 +8,7 @@ public interface DownloadService {
 
 	File getStatDateRange(String dateFrom, String dateTo);
 
-	File getStatDate(String date, String[] teams);
+	String getStatDate(String date, String[] teams);
 
 	File getStatDateRange(String dateFrom, String dateTo, String[] teams);
 
