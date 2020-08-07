@@ -6,10 +6,10 @@ public interface DownloadService {
 
 	String getStatDate(String date);
 
-	File getStatDateRange(String dateFrom, String dateTo);
+	String getStatDateRange(String dateFrom, String dateTo);
 
 	String getStatDate(String date, String[] teams);
 
-	File getStatDateRange(String dateFrom, String dateTo, String[] teams);
+	String getStatDateRange(String dateFrom, String dateTo, String[] teams);
 
 }

@@ -3,7 +3,12 @@ package com.aryanrt.stats.service.impl;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
+import org.hibernate.type.CalendarDateType;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,7 +55,7 @@ public class DownloadServiceImpl implements DownloadService
 	}
 	public String getStatDate(String date)
 	{
-		
+		System.out.println(date);
 		String result= "";
 		for(Game game: gameService.findByDate(date))
 		{			
@@ -70,7 +75,11 @@ public class DownloadServiceImpl implements DownloadService
 				if(playerstat.getMin().equals("0"))
 					continue;
 				String temp="";
+					
 				Player player = playerService.findOne(playerstat.getId().getPlayerID());
+				if(player == null)
+					continue;
+
 				temp += player.getId().getFirstName()+","+ player.getId().getLastName()+"," + playerstat.getPts()+","+
 						playerstat.getAst()+","+playerstat.getReb()+","+playerstat.getOrb()+"," +playerstat.getDrb()+","
 						+playerstat.getStl()+","+playerstat.getBs()+","+playerstat.getFgm()+","+playerstat.getFga()+","+
@@ -137,6 +146,9 @@ public class DownloadServiceImpl implements DownloadService
 					continue;
 				String temp="";
 				Player player = playerService.findOne(playerstat.getId().getPlayerID());
+				if(player == null)
+					continue;
+				
 				temp += player.getId().getFirstName()+","+ player.getId().getLastName()+"," + playerstat.getPts()+","+
 						playerstat.getAst()+","+playerstat.getReb()+","+playerstat.getOrb()+"," +playerstat.getDrb()+","
 						+playerstat.getStl()+","+playerstat.getBs()+","+playerstat.getFgm()+","+playerstat.getFga()+","+
@@ -164,22 +176,47 @@ public class DownloadServiceImpl implements DownloadService
 					+teamstat2.getStl()+","+teamstat2.getBs()+","+teamstat2.getFgm()+","+teamstat2.getFga()+","+
 					teamstat2.getThreepm()+","+teamstat2.getThreepa()+","+teamstat2.getFtm()+","+teamstat2.getFta()+
 					","+teamstat2.getTov()+","+teamstat2.getPf()+",240:00\n\n";			
-		}
-		
-		return result;
-		
+		}		
+		return result;	
 	}
 	
 	@Override
-	public File getStatDateRange(String dateFrom, String dateTo)
+	public String getStatDateRange(String dateFrom, String dateTo)
 	{
-		return null;
+		String result = new String();
+		LocalDate startDate  = LocalDate.of(Integer.parseInt(dateFrom.substring(0, 4)), Integer.parseInt(dateFrom.substring(4, 6)),
+				Integer.parseInt(dateFrom.substring(6, 8)));
+		LocalDate finishDate  = LocalDate.of(Integer.parseInt(dateTo.substring(0, 4)), Integer.parseInt(dateTo.substring(4, 6)),
+				Integer.parseInt(dateTo.substring(6, 8)));
+		
+		while(! startDate.isAfter(finishDate))
+		{
+			String tmp = "";
+			tmp = Integer.toString(startDate.getYear())+Integer.toString(startDate.getMonthValue())+Integer.toString(startDate.getDayOfMonth());
+			result += getStatDate(tmp);
+			startDate = startDate.plusDays(1);
+		}
+		return result;
 		
 	}
 	@Override
-	public File getStatDateRange(String dateFrom, String dateTo, String teams[])
+	public String getStatDateRange(String dateFrom, String dateTo, String teams[])
 	{
-		return null;
+		String result = new String();
+		LocalDate startDate  = LocalDate.of(Integer.parseInt(dateFrom.substring(0, 4)), Integer.parseInt(dateFrom.substring(4, 6)),
+				Integer.parseInt(dateFrom.substring(6, 8)));
+		LocalDate finishDate  = LocalDate.of(Integer.parseInt(dateTo.substring(0, 4)), Integer.parseInt(dateTo.substring(4, 6)),
+				Integer.parseInt(dateTo.substring(6, 8)));
+		
+		while(! startDate.isAfter(finishDate))
+		{
+			String tmp = "";
+			tmp = Integer.toString(startDate.getYear())+Integer.toString(startDate.getMonthValue())+Integer.toString(startDate.getDayOfMonth());
+			result += getStatDate(tmp, teams);
+			startDate = startDate.plusDays(1);
+		}
+		return result;
+		
 		
 	}
 	
