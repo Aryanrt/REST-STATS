@@ -6,20 +6,27 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
+
+import freemarker.ext.beans.MapModel;
  
 @Controller  
 public class LoginController {
   
-   
-  @GetMapping(value="/login")
-  public String login(HttpServletRequest request)
-  {   
+	@Autowired
+	private FirebaseAuth firebaseAuth;
+	
+	@GetMapping(value="/login")
+	public String login(HttpServletRequest request, Model model)
+	{   
 //	  FileInputStream serviceAccount = null;
 //		try {
 //			serviceAccount = new FileInputStream("./serviceAccount.json");
@@ -41,9 +48,12 @@ public class LoginController {
 //
 //		FirebaseApp.initializeApp(options);
 //		
+		//firebaseAuth.
 		//FirebaseApp app = FirebaseApp.getInstance();
 		//System.out.println(app.getName());
 		//app.
+		model.addAttribute("firebase", firebaseAuth);
+	  
 			
 	return "login.html";
   }

@@ -11,7 +11,7 @@
 
 function init()
 {
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey: "AIzaSyBEzhlpzcJ1lxjfTBo_2ZMy2ZCxyz91AZY",
   authDomain: "bball-auth.firebaseapp.com",
   databaseURL: "https://bball-auth.firebaseio.com",
@@ -24,8 +24,8 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 var defaultProject = firebase.initializeApp(firebaseConfig);
-alert(defaultProject.name);
-console.log(defaultProject.name);  // "[DEFAULT]"*/
+alert(defaultProject.name);*/
+  // "[DEFAULT]"*/
 
 
 /*
@@ -42,23 +42,24 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 
+
 }
 
 
 function githubSignin()
 {
+	 var firebase= $(firebase);
+            alert(firebase); 
 	
-	var user = firebase.auth().currentUser;
-	alert(user);
+	//var user = firebase.auth().currentUser;
+	//alert(user);
 	var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 	ui.start('#firebaseui-auth-container', {
   signInOptions: [     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
     firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
       signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
@@ -101,6 +102,7 @@ function githubSignin()
   ],
 signInSuccess: function(currentUser, credential, redirectUrl) {
   const userId = currentUser.uid; 
+alert("signed in");	
   // Manually redirect.
   window.location.assign(`/users/${userId}`);
   // Do not automatically redirect.
