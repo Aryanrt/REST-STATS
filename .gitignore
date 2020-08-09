@@ -15,7 +15,7 @@ target/
 
 
 ###Credentials###
-/login-client/serviceAccount.json
+login-client/serviceAccount.json
 ### IntelliJ IDEA ###
 .idea
 *.iws
