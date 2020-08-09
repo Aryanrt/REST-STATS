@@ -15,7 +15,7 @@ target/
 
 
 ###Credentials###
-*.json
+./login-client/*.json
 ### IntelliJ IDEA ###
 .idea
 *.iws
