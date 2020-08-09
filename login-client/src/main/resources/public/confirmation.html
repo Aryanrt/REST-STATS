@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V17</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body onLoad="init()">
+
+<div class="webdesigntuts-workshop">
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+
+			<!-- <div class="contact100-more" style="background-image: url('images/bg-01.jpg');"> 
+				<span style="writing-mode: vertical-rl; text-orientation: upright; color:white; font-size:50px; "> Some Ads</span>
+			</div> -->
+			<form action="download"  method="GET" class="contact100-form ">
+				<span class="contact100-form-title">
+						<a href="./downloaded">Click here to Download Your Requested Stats</a>
+					Thanks for Downloading!
+				</span>
+<!--
+				<label class="label-input100" for="first-name">Tell us your name *</label>
+				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Type first name">
+					<input id="first-name" class="input100" type="text" name="first-name" placeholder="First name">
+					
+				</div>
+				<div class="wrap-input100 rs2-wrap-input100 validate-input" data-validate="Type last name">
+					<input class="input100" type="text" name="last-name" placeholder="Last name">
+					
+				</div>
+				 ----- -->
+				 
+				 <!-- one or multiple dates? -->
+				<label class="label-input100" for="dates">Choose Date or Date Range *</label>				
+				<div id="d1" class="wrap-input100 box1" val="set" onclick="myFunction()">
+					<label class="label-radio100" for="first-name"><span>1 Date</span></label>
+					<input id="signle-date" class="input-radio100" type="radio" name="one-date" placeholder="1 Date" checked  style="display: none">
+				</div>
+				
+				
+				<div id="d2" class="wrap-input100 box1" val="" onclick="myFunction2()">					
+					<label class="label-radio100" for="first-name"><span>Multiple Dates</span></label>
+					<input id="mutli-dates" class="input-radio100" type="radio" name="multi-dates" placeholder="Date Ranges" style="display: none">					
+				</div>
+				<!------------------------------------->
+				<!-- what date -->
+				<label class="label-input100" id="v1-lable" >Choose The Date</label>
+				<div class="wrap-input100 box1" id="v1-div" val=""  style="width:100%;" onchange="evalHightlight(this)">
+					<input id="date" class="input-radio100" type="date" name="date-wanted" style="width:100%;height:100%; " >					
+				</div>
+				
+				<label class="label-input100" id="v2-lable" style="display:none">Choose The Date Range
+				<span id="error-msg" style="visibility: hidden; color:red;"></span></label>
+				<div class="wrap-input100"  id="v2-div1" style="display:none;width:50%"  onchange="evalDate(this)">
+					<input id="dates-from" class="input-radio100" type="date" name="date-from" placeholder="From" style="width: 100%;height:100%">
+				</div>
+				<div class="wrap-input100" id="v2-div2" style="display:none;width:50%" onchange="evalDate(this)">
+					 <input id="dates-to" class="input-radio100" type="date" name="date-to" placeholder="To" onClick="toDate(this.id)" style="width: 100%;height:100%">
+				</div>
+				<!------------------------------------->
+				<!-- all teams or not? -->
+
+				<label class="label-input100">Choose the team(s)</label>
+				<div id="div3" class="wrap-input100 box1" val="set"  onclick="allTeams()">
+					<label class="label-radio100"  for="first-name"><span>All Teams</span></label>
+					<input id="all-teams" class="input-radio100" type="radio" name="all-teams"  style="display: none">
+				</div>					
+				<div id="div4" class="wrap-input100 box1" val="" onclick="mutiTeams()">					
+					<label class="label-radio100" for="first-name"><span>Specific Teams</span></label>
+					<input id="mutli-teams" class="input-radio100" type="radio" name="some-teams" autocomplete="off"  style="display: none">					
+				</div>
+				<!------------------------------------->
+				<!-- what teams -->
+				<label class="label-input100" id="teams-lable" style="display: none">Choose The Teams</label>
+				<div class="wrap-input100" id="teams-div"  style="display: none">
+					<label id="team1" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team1-checkbox" type="checkbox" style="display: none" onclick="">ATL</label>	
+					<label id="team2" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team2-checkbox" type="checkbox" style="display: none">BKN</label>	
+					<label id="team3" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team3-checkbox" type="checkbox" name="email" style="display: none">BOS</label>	
+					<label id="team4" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team4-checkbox" type="checkbox" name="email" style="display: none">CHA</label>	
+					<label id="team5" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team5-checkbox" type="checkbox" name="email" style="display: none">CHI</label>	
+					<label id="team6" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team6-checkbox" type="checkbox" name="email" style="display: none">CLE</label>	
+					<label id="team7" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team7-checkbox" type="checkbox" name="email" style="display: none">DAL</label>	
+					<label id="team8" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team8-checkbox" type="checkbox" name="email" style="display: none">DEN</label>	
+					<label id="team9" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team9-checkbox" type="checkbox" name="email" style="display: none">DET</label>	
+					<label id="team10" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team10-checkbox" type="checkbox" name="email" style="display: none">GSW</label>	
+					<label id="team11" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team11-checkbox" type="checkbox" name="email" style="display: none">HOU</label>	
+					<label id="team12" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team12-checkbox" type="checkbox" name="email" style="display: none">IND</label>	
+					<label id="team13" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team13-checkbox" type="checkbox" name="email" style="display: none">LAC</label>	
+					<label id="team14" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team14-checkbox" type="checkbox" name="email" style="display: none">LAL</label>	
+					<label id="team15" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team15-checkbox" type="checkbox" name="email" style="display: none">MEM</label>	
+					<label id="team16" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team16-checkbox" type="checkbox" name="email" style="display: none">MIA</label>	
+					<label id="team17" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team17-checkbox" type="checkbox" name="email" style="display: none">MIL</label>	
+					<label id="team18" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team18-checkbox" type="checkbox" name="email" style="display: none">MIN</label>	
+					<label id="team19" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team19-checkbox" type="checkbox" name="email" style="display: none">NOP</label>	
+					<label id="team20" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team20-checkbox" type="checkbox" name="email" style="display: none">NYK</label>	
+					<label id="team21" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team21-checkbox" type="checkbox" name="email" style="display: none">OKC</label>	
+					<label id="team22" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team22-checkbox" type="checkbox" name="email" style="display: none">ORL</label>	
+					<label id="team23" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team23-checkbox" type="checkbox" name="email" style="display: none">PHI</label>	
+					<label id="team24" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team24-checkbox" type="checkbox" name="email" style="display: none">PHX</label>	
+					<label id="team25" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team25-checkbox" type="checkbox" name="email" style="display: none">POR</label>	
+					<label id="team26" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team26-checkbox" type="checkbox" name="email" style="display: none">SAC</label>	
+					<label id="team27" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team27-checkbox" type="checkbox" name="email" style="display: none">SAS</label>	
+					<label id="team28" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team28-checkbox" type="checkbox" name="email" style="display: none">TOR</label>	
+					<label id="team29" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team29-checkbox" type="checkbox" name="email" style="display: none">UTA</label>	
+					<label id="team30" class="label-checkbox100" for="teams" onclick="selectTeam(this)" >
+					<input id="team30-checkbox" type="checkbox" name="email" style="display: none">WSH</label>	
+					
+					
+					
+					
+				</div>				
+				<div id="submit-container" class="container-contact100-form-btn">
+					<button id="submit-button" class="contact100-form-btn" val="">
+						Download
+					</button>
+				</div>
+			</form>
+ <!-- 
+			<div class="contact100-more flex-col-c-m" style="background-image: url('images/bg-01.jpg');">
+				<span style="writing-mode: vertical-rl; text-orientation: upright; color:white; font-size:50px; "> Some Ads</span>
+			 -->	<!-- <div class="flex-w size1 p-b-47">
+					<div class="txt1 p-r-25">
+						<span class="lnr lnr-map-marker"></span>
+					</div>
+					<div class="flex-col size2">
+						<span class="txt1 p-b-20">
+							Address
+						</span>
+						<span class="txt2">
+							Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US
+						</span>
+					</div>
+				</div>
+				<div class="dis-flex size1 p-b-47">
+					<div class="txt1 p-r-25">
+						<span class="lnr lnr-phone-handset"></span>
+					</div>
+					<div class="flex-col size2">
+						<span class="txt1 p-b-20">
+							Lets Talk
+						</span>
+						<span class="txt3">
+							+1 800 1236879
+						</span>
+					</div>
+				</div>
+				<div class="dis-flex size1 p-b-47">
+					<div class="txt1 p-r-25">
+						<span class="lnr lnr-envelope"></span>
+					</div>
+					<div class="flex-col size2">
+						<span class="txt1 p-b-20">
+							Teams
+						</span>
+						<span id="teams" class="txt3">
+							
+						</span>
+					</div>
+				</div>
+		</div> -->	
+		</div>
+	</div>
+
+</div>
+
+	<div id="dropDownSelect1"></div>
+<script src="./index.js"></script>
+<!--===============================================================================================-->
+
+</body>
+</html>
