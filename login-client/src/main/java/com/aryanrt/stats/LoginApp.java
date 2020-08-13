@@ -4,8 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.hateoas.config.HypermediaMappingInformation;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -38,40 +44,5 @@ public class LoginApp {
 		SpringApplication.run(LoginApp.class, args);
 	}
 	
-
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(LoginApp.class);
-	}
-//
-//	@Bean
-//	public CorsFilter corsFilter() {
-//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		CorsConfiguration config = new CorsConfiguration();
-//		config.setAllowCredentials(true); // you USUALLY want this
-//		config.addAllowedOrigin("*");
-//		config.addAllowedHeader("*");
-//		config.addAllowedMethod("GET");
-//		config.addAllowedMethod("PUT");
-//		config.addAllowedMethod("POST");
-//		config.addAllowedHeader("x-firebase-auth");
-//		source.registerCorsConfiguration("/**", config);
-//		return new CorsFilter(source);
-//	}
-
-	@Bean
-	public FirebaseAuth firebaseAuth() throws IOException {
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		
-		FileInputStream serviceAccount = new FileInputStream(
-				"serviceAccount.json");
-
-		FirebaseOptions options = new FirebaseOptions.Builder()
-				.setCredentials(GoogleCredentials.fromStream(serviceAccount))
-				.setDatabaseUrl("https://bball-auth.firebaseio.com/").build();	
-
-		FirebaseApp.initializeApp(options);
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		
-		return FirebaseAuth.getInstance();
-	}
+	
  }
