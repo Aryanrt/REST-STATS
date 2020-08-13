@@ -34,7 +34,7 @@ import com.aryanrt.stats.service.impl.UserDetailsImpl;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
+@RestController 
 @RequestMapping("/api/auth")
 public class AuthController {
 	@Autowired
